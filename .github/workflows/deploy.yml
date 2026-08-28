@@ -130,7 +130,7 @@ jobs:
           exit 1
 
       - name: Rollback on failure
-        if: failure() && steps.deploy.outcome == 'success'
+        if: (failure() || cancelled()) && steps.deploy.outcome == 'success'
         run: |
           echo "::warning::Deployment failed smoke test, triggering rollback"
           PREV="${{ steps.current.outputs.image }}"

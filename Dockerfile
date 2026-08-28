@@ -17,7 +17,7 @@ RUN npm ci --ignore-scripts
 COPY . .
 ENV PRISM_BUILD_VERSION=${PRISM_BUILD_VERSION} \
     PRISM_BUILD_COMMIT=${PRISM_BUILD_COMMIT} \
-    PRISM_BUILD_TIME=${PRISM_BUILD_TIME:-$(date -u +%Y-%m-%dT%H:%M:%SZ)}
+    PRISM_BUILD_TIME=${PRISM_BUILD_TIME}
 RUN npm run build
 
 # Prune to production dependencies

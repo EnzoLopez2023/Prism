@@ -51,3 +51,17 @@ test('App Service signals apply deployed storage/static defaults even without NO
 test('explicit development auth binds loopback only', () => {
   assert.equal(loadConfig({ PRISM_AUTH_MODE: 'development' }).host, '127.0.0.1')
 })
+
+test('HOST override takes precedence in development mode for container scenarios', () => {
+  assert.equal(loadConfig({ PRISM_AUTH_MODE: 'development', HOST: '0.0.0.0' }).host, '127.0.0.1',
+    'development mode must always bind loopback regardless of HOST override')
+})
+
+test('PRISM_ENTRA_API_SCOPE is included in config', () => {
+  const config = loadConfig({
+    PRISM_ENTRA_TENANT_ID: '00000000-0000-4000-8000-000000000001',
+    PRISM_ENTRA_AUDIENCE: 'api://prism',
+    PRISM_ENTRA_API_SCOPE: 'api://prism/.default',
+  })
+  assert.equal(config.auth.apiScope, 'api://prism/.default')
+})
