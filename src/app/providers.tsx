@@ -2,7 +2,7 @@ import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
 import { MsalProvider } from '@azure/msal-react'
 import type { PropsWithChildren } from 'react'
 import { AuthBoundary } from '../auth/AuthBoundary'
-import { msal } from '../auth/msal'
+import { getMsal } from '../auth/msal'
 
 const theme = createTheme({
   palette: {
@@ -29,5 +29,5 @@ const theme = createTheme({
 })
 
 export function AppProviders({ children }: PropsWithChildren) {
-  return <MsalProvider instance={msal}><ThemeProvider theme={theme}><CssBaseline /><AuthBoundary>{children}</AuthBoundary></ThemeProvider></MsalProvider>
+  return <MsalProvider instance={getMsal()}><ThemeProvider theme={theme}><CssBaseline /><AuthBoundary>{children}</AuthBoundary></ThemeProvider></MsalProvider>
 }

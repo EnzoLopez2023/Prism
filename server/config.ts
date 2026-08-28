@@ -13,6 +13,7 @@ export interface AppConfig {
     tenantId?: string
     clientId?: string
     audience?: string
+    apiScope?: string
     bootstrapAdminOid?: string
   }
   limits: {
@@ -62,6 +63,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
       tenantId: env.PRISM_ENTRA_TENANT_ID,
       clientId: env.PRISM_ENTRA_CLIENT_ID,
       audience: env.PRISM_ENTRA_AUDIENCE,
+      apiScope: env.PRISM_ENTRA_API_SCOPE,
       bootstrapAdminOid: env.PRISM_BOOTSTRAP_ADMIN_OID,
     },
     limits: {
