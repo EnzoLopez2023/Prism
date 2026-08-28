@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: No-Postgres gate
+        run: npm run check:no-postgres
+
+      - name: Build
+        run: npm run build
+
+      - name: Audit (production)
+        run: npm audit --omit=dev --audit-level=high
+        continue-on-error: true
+
+  docker:
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            --build-arg PRISM_BUILD_VERSION=${{ github.sha }} \
+            --build-arg PRISM_BUILD_COMMIT=${{ github.sha }} \
+            --build-arg "PRISM_BUILD_TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            -t prism:ci-${{ github.sha }} .
+
+      - name: Smoke test container
+        run: |
+          docker run -d --name prism-smoke \
+            -e PRISM_AUTH_MODE=development \
+            -e NODE_ENV=development \
+            -e PRISM_DB_PATH=/tmp/prism.db \
+            -e PRISM_ARTIFACT_ROOT=/tmp/prism-artifacts \
+            prism:ci-${{ github.sha }}
+          sleep 5
+          docker logs prism-smoke
+          docker exec prism-smoke node -e "fetch('http://127.0.0.1:3000/api/live').then(r=>r.json()).then(j=>{if(j.status!=='live')process.exit(1);console.log(JSON.stringify(j))}).catch(()=>process.exit(1))"
+          docker exec prism-smoke node -e "fetch('http://127.0.0.1:3000/api/version').then(r=>r.json()).then(j=>{if(j.app!=='prism')process.exit(1);console.log(JSON.stringify(j))}).catch(()=>process.exit(1))"
+          docker stop prism-smoke

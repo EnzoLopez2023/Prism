@@ -1,7 +1,10 @@
 export const buildIdentity = Object.freeze({
   app: 'prism',
-  version: '1.0.0',
+  version: process.env.PRISM_BUILD_VERSION || '1.0.0-local',
   schema: 'prism.sqlite.v2',
+  commit: process.env.PRISM_BUILD_COMMIT || 'unknown',
+  buildTime: process.env.PRISM_BUILD_TIME || new Date().toISOString(),
+  imageDigest: process.env.PRISM_IMAGE_DIGEST || 'none',
   source: {
     app: 'hearth',
     version: '2.13.2',

@@ -17,6 +17,18 @@ export function createApp(config: AppConfig, repository: PrismRepository, client
   app.use(express.json({ limit: config.limits.jsonBytes }))
   app.use((req, _res, next) => { req.repository = repository; next() })
 
+  app.get('/api/config', (_req, res) => {
+    const cfg: Record<string, string | undefined> = {
+      entraConfigured: String(config.auth.mode === 'entra' && Boolean(config.auth.tenantId && config.auth.clientId)),
+    }
+    if (config.auth.mode === 'entra') {
+      cfg.tenantId = config.auth.tenantId
+      cfg.clientId = config.auth.clientId
+      cfg.apiScope = config.auth.apiScope
+    }
+    res.set('Cache-Control', 'no-store')
+    res.json(cfg)
+  })
   app.get('/api/live', (_req, res) => res.json({ status: 'live', app: buildIdentity.app }))
   app.get(['/api/version', '/version.json'], (_req, res) => res.json(buildIdentity))
   app.get('/api/ready', async (_req, res) => {

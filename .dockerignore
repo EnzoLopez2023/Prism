@@ -1,0 +1,17 @@
+node_modules/
+dist/
+build/
+coverage/
+data/
+.git/
+.env
+.env.*
+!.env.example
+*.db
+*.db-*
+.DS_Store
+.impeccable/
+test/
+docs/
+*.md
+!README.md
