@@ -7,11 +7,13 @@ ARG PRISM_BUILD_VERSION=0.0.0-docker
 ARG PRISM_BUILD_COMMIT=unknown
 ARG PRISM_BUILD_TIME
 
+RUN apt-get update && apt-get install -y --no-install-recommends python3 make g++ && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /build
 
-# Install dependencies first (layer cache)
+# Install dependencies (native addons like better-sqlite3 need compilation)
 COPY package.json package-lock.json ./
-RUN npm ci --ignore-scripts
+RUN npm ci
 
 # Copy source and build
 COPY . .
@@ -21,7 +23,7 @@ ENV PRISM_BUILD_VERSION=${PRISM_BUILD_VERSION} \
 RUN npm run build
 
 # Prune to production dependencies
-RUN npm ci --omit=dev --ignore-scripts
+RUN npm ci --omit=dev
 
 # ── Runtime stage ────────────────────────────────────────────────────────────
 FROM node:24-slim AS runtime
