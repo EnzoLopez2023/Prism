@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-28T16:53:39Z",
+  "title": "Design System: Prism",
+  "extensions": {
+    "colorMeta": {
+      "spectral-violet": { "role": "primary", "displayName": "Spectral Violet", "canonical": "#6346db", "tonalRamp": ["oklch(15% 0.215 285.0)", "oklch(28% 0.215 285.0)", "oklch(40% 0.215 285.0)", "oklch(52% 0.215 285.0)", "oklch(68% 0.215 285.0)", "oklch(80% 0.215 285.0)", "oklch(88% 0.215 285.0)", "oklch(95% 0.215 285.0)"] },
+      "violet-deep": { "role": "primary-dark", "displayName": "Violet Deep", "canonical": "#4930b5", "tonalRamp": ["oklch(15% 0.20 284.0)", "oklch(24% 0.20 284.0)", "oklch(34% 0.20 284.0)", "oklch(44% 0.20 284.0)", "oklch(56% 0.20 284.0)", "oklch(70% 0.20 284.0)", "oklch(84% 0.20 284.0)", "oklch(95% 0.20 284.0)"] },
+      "bright-paper": { "role": "neutral", "displayName": "Bright Paper", "canonical": "#f3f4f8", "tonalRamp": ["oklch(15% 0.005 275.0)", "oklch(28% 0.005 275.0)", "oklch(40% 0.005 275.0)", "oklch(55% 0.005 275.0)", "oklch(68% 0.005 275.0)", "oklch(80% 0.005 275.0)", "oklch(88% 0.005 275.0)", "oklch(97% 0.005 275.0)"] },
+      "pure-paper": { "role": "neutral-surface", "displayName": "Pure Paper", "canonical": "#ffffff", "tonalRamp": ["oklch(15% 0 0)", "oklch(30% 0 0)", "oklch(45% 0 0)", "oklch(60% 0 0)", "oklch(75% 0 0)", "oklch(88% 0 0)", "oklch(95% 0 0)", "oklch(100% 0 0)"] },
+      "ink": { "role": "neutral-text", "displayName": "Ink", "canonical": "#171824", "tonalRamp": ["oklch(10% 0.02 281.0)", "oklch(20% 0.02 281.0)", "oklch(32% 0.02 281.0)", "oklch(45% 0.02 281.0)", "oklch(60% 0.02 281.0)", "oklch(75% 0.02 281.0)", "oklch(88% 0.02 281.0)", "oklch(95% 0.02 281.0)"] },
+      "slate": { "role": "neutral-text-secondary", "displayName": "Slate", "canonical": "#5d6074", "tonalRamp": ["oklch(15% 0.02 281.0)", "oklch(28% 0.02 281.0)", "oklch(40% 0.02 281.0)", "oklch(48% 0.02 281.0)", "oklch(62% 0.02 281.0)", "oklch(75% 0.02 281.0)", "oklch(88% 0.02 281.0)", "oklch(95% 0.02 281.0)"] },
+      "rule-gray": { "role": "neutral-border", "displayName": "Rule Gray", "canonical": "#dfe1ea", "tonalRamp": ["oklch(15% 0.01 275.0)", "oklch(28% 0.01 275.0)", "oklch(40% 0.01 275.0)", "oklch(55% 0.01 275.0)", "oklch(68% 0.01 275.0)", "oklch(80% 0.01 275.0)", "oklch(90% 0.01 275.0)", "oklch(97% 0.01 275.0)"] },
+      "graphite": { "role": "neutral-inverse", "displayName": "Graphite", "canonical": "#202130", "tonalRamp": ["oklch(15% 0.028 281.2)", "oklch(25% 0.028 281.2)", "oklch(35% 0.028 281.2)", "oklch(48% 0.028 281.2)", "oklch(62% 0.028 281.2)", "oklch(76% 0.028 281.2)", "oklch(88% 0.028 281.2)", "oklch(95% 0.028 281.2)"] },
+      "graphite-deep": { "role": "neutral-inverse-surface", "displayName": "Graphite Deep", "canonical": "#2a2b3d", "tonalRamp": ["oklch(15% 0.025 280.0)", "oklch(26% 0.025 280.0)", "oklch(37% 0.025 280.0)", "oklch(50% 0.025 280.0)", "oklch(64% 0.025 280.0)", "oklch(78% 0.025 280.0)", "oklch(88% 0.025 280.0)", "oklch(95% 0.025 280.0)"] },
+      "graphite-line": { "role": "neutral-inverse-border", "displayName": "Graphite Line", "canonical": "#303245", "tonalRamp": ["oklch(15% 0.022 280.0)", "oklch(27% 0.022 280.0)", "oklch(38% 0.022 280.0)", "oklch(51% 0.022 280.0)", "oklch(65% 0.022 280.0)", "oklch(78% 0.022 280.0)", "oklch(88% 0.022 280.0)", "oklch(95% 0.022 280.0)"] },
+      "confirm-green": { "role": "success", "displayName": "Confirm Green", "canonical": "#16845b", "tonalRamp": ["oklch(15% 0.114 161.8)", "oklch(28% 0.114 161.8)", "oklch(40% 0.114 161.8)", "oklch(55% 0.114 161.8)", "oklch(68% 0.114 161.8)", "oklch(80% 0.114 161.8)", "oklch(88% 0.114 161.8)", "oklch(95% 0.114 161.8)"] },
+      "warning-amber": { "role": "warning", "displayName": "Warning Amber", "canonical": "#a65f00", "tonalRamp": ["oklch(15% 0.127 62.5)", "oklch(28% 0.127 62.5)", "oklch(40% 0.127 62.5)", "oklch(55% 0.127 62.5)", "oklch(68% 0.127 62.5)", "oklch(80% 0.127 62.5)", "oklch(88% 0.127 62.5)", "oklch(95% 0.127 62.5)"] },
+      "alert-red": { "role": "error", "displayName": "Alert Red", "canonical": "#b4233e", "tonalRamp": ["oklch(15% 0.179 17.0)", "oklch(28% 0.179 17.0)", "oklch(40% 0.179 17.0)", "oklch(51% 0.179 17.0)", "oklch(68% 0.179 17.0)", "oklch(80% 0.179 17.0)", "oklch(88% 0.179 17.0)", "oklch(95% 0.179 17.0)"] }
+    },
+    "typographyMeta": {
+      "headline": { "displayName": "Headline", "purpose": "The one PageHeading title per workspace; largest text in the system." },
+      "title": { "displayName": "Title", "purpose": "In-panel section headers: analysis heading, saved-prompt title." },
+      "body": { "displayName": "Body", "purpose": "Descriptions, message content, prompt bodies." },
+      "label": { "displayName": "Label", "purpose": "Functional per-message sender tag (USER/ASSISTANT) — the system's only uppercase small-caps text." },
+      "nav-label": { "displayName": "Nav Label", "purpose": "Rail link text, desktop and mobile bottom-bar." },
+      "mono": { "displayName": "Mono", "purpose": "Code blocks inside streamed assistant markdown." }
+    },
+    "shadows": [
+      { "name": "panel-lift", "value": "0 12px 28px rgba(33,35,52,0.06)", "purpose": "The system's only shadow. Lifts the single active workspace panel a fraction off the bright-paper canvas." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "160ms ease-out", "purpose": "Default transition for rail-link color/background, converter-dropzone border/background." }
+    ],
+    "breakpoints": [
+      { "name": "grid-collapse", "value": "1080px" },
+      { "name": "mobile", "value": "760px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one primary action per workspace (Generate, Run comparison, New prompt).",
+      "html": "<button class=\"ds-btn-primary\">Run comparison</button>",
+      "css": ".ds-btn-primary { background: #6346db; color: #fff; min-height: 40px; padding: 0 16px; border: none; border-radius: 10px; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.88rem; font-weight: 680; text-transform: none; box-shadow: none; transition: background-color 0.16s ease-out; } .ds-btn-primary:hover { background: #4930b5; } .ds-btn-primary:focus-visible { outline: 3px solid #b7a7ff; outline-offset: 2px; }"
+    },
+    {
+      "name": "Outlined Button",
+      "kind": "button",
+      "refersTo": "button-outlined",
+      "description": "Secondary file/attach actions (Browse files, Add source image).",
+      "html": "<button class=\"ds-btn-outlined\">Browse files</button>",
+      "css": ".ds-btn-outlined { background: transparent; color: #171824; min-height: 40px; padding: 0 16px; border: 1px solid #dfe1ea; border-radius: 10px; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.88rem; font-weight: 680; box-shadow: none; transition: border-color 0.16s ease-out, background-color 0.16s ease-out; } .ds-btn-outlined:hover { border-color: #6346db; background: #faf9ff; } .ds-btn-outlined:focus-visible { outline: 3px solid #b7a7ff; outline-offset: 2px; }"
+    },
+    {
+      "name": "Rail Nav Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Persistent rail item; solid violet fill when active.",
+      "html": "<a class=\"ds-rail-link ds-rail-link--active\" href=\"#\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\"/></svg><span>Assistant</span></a>",
+      "css": ".ds-rail-link { min-height: 42px; display: flex; align-items: center; gap: 11px; padding: 8px 10px; border-radius: 8px; color: #c4c5d3; text-decoration: none; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.88rem; font-weight: 620; transition: background-color 0.16s ease-out, color 0.16s ease-out; } .ds-rail-link:hover { color: #fff; background: #2b2d40; } .ds-rail-link:focus-visible { outline: 3px solid #b7a7ff; outline-offset: 2px; } .ds-rail-link--active { color: #fff; background: #6346db; }"
+    },
+    {
+      "name": "Workspace Panel",
+      "kind": "card",
+      "refersTo": "workspace-panel",
+      "description": "The one active-tool surface per screen; the system's only shadow lives here.",
+      "html": "<section class=\"ds-workspace-panel\">Panel content</section>",
+      "css": ".ds-workspace-panel { background: #fff; border: 1px solid #dfe1ea; border-radius: 12px; box-shadow: 0 12px 28px rgba(33,35,52,0.06); padding: 18px; }"
+    },
+    {
+      "name": "Status Chip (success)",
+      "kind": "chip",
+      "refersTo": "chip-status-success",
+      "description": "Explicit-state marker: a model provider reporting available.",
+      "html": "<span class=\"ds-chip ds-chip--success\">available</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; height: 24px; padding: 0 8px; border-radius: 999px; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.75rem; font-weight: 600; } .ds-chip--success { background: #16845b; color: #fff; } .ds-chip--outlined { background: transparent; border: 1px solid #dfe1ea; color: #171824; }"
+    },
+    {
+      "name": "Chat Message (user)",
+      "kind": "custom",
+      "refersTo": "chat-bubble-user",
+      "description": "Signature component: the tail-cornered user bubble, asymmetric 12/12/3/12 radius.",
+      "html": "<div class=\"ds-chat-bubble-user\">What's the deadline for this?</div>",
+      "css": ".ds-chat-bubble-user { margin-left: auto; width: fit-content; max-width: min(780px, 86%); padding: 12px 16px; border-radius: 12px 12px 3px 12px; background: #ebe7ff; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; font-size: 1rem; color: #171824; }"
+    },
+    {
+      "name": "Converter Dropzone",
+      "kind": "custom",
+      "refersTo": "converter-drop",
+      "description": "Signature component: the only dashed-border element, standing in for a text input where the material is a file.",
+      "html": "<label class=\"ds-dropzone\" tabindex=\"0\">Drop a workbook or click to browse<input type=\"file\" hidden></label>",
+      "css": ".ds-dropzone { min-height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; padding: 30px; text-align: center; cursor: pointer; background: #fff; border: 1px dashed #dfe1ea; border-radius: 12px; transition: border-color 0.16s ease-out, background-color 0.16s ease-out; } .ds-dropzone:hover { border-color: #6346db; background: #faf9ff; } .ds-dropzone:focus-within { outline: 3px solid #a897ef; outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Optical Bench",
+    "overview": "Prism reads as an instrument, not a dashboard: a dark graphite rail holds the tool selector at rest, and every chosen tool opens onto a bright paper canvas where a single white workspace panel does the work. Spectral violet is the one indicator light in the system — it marks the active tool, the primary action, and the focus ring, and nowhere else. The product carries direct, technical, task-oriented language (per PRODUCT.md's Brand Commitments) and the built surface matches it: no illustration, no gradients beyond the small brand mark, no marketing voice.\n\nThe build confirms the OWN-WORLD brief exactly — graphite planes (the rail, #202130), bright paper (the canvas, #f3f4f8), spectral violet (#6346db) as the lone accent, crisp 1px rules instead of shadows for most separation, and compact controls (40px buttons, 42px rail links, 0.72–0.88rem labels). Depth is nearly flat: the workspace panel carries the system's only shadow, a soft ambient lift barely visible against the paper. There are no decorative kickers, no hard-offset shadows, and no glyph iconography beyond functional MUI action icons (send, attach, delete) sized to the compact-control scale.",
+    "keyCharacteristics": [
+      "Two structural planes only: dark graphite rail, bright paper canvas, with pure-white workspace panels floating a fraction above the canvas.",
+      "One accent color, reserved for the active/primary state.",
+      "Flat-by-default depth; a single soft shadow, no card lift ladder.",
+      "Crisp 1px hairline rules do most of the separation work shadows would otherwise do.",
+      "A single font family (Aptos/Segoe UI Variable) carries every role from page title to body to labels."
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "Spectral Violet appears only on the active/selected/primary-action state — never as a decorative background wash. Its own tinted family (violet-wash, violet-mist, violet-frost, violet-line) exists solely to shade elements already tied to the accent; it never substitutes for Bright Paper as the general canvas color.", "section": "colors" },
+      { "name": "The Single Family Rule", "body": "One font stack serves display, body, and label roles across the whole product; hierarchy is carried by weight, size, and letter-spacing, never by introducing a second face.", "section": "typography" },
+      { "name": "The One Shadow Rule", "body": "There is exactly one shadow value in the system, and it exists to separate the single workspace panel from the canvas beneath it — not to create an elevation ladder. No other element carries a shadow.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep Spectral Violet to a single role per screen: the active nav item, the one primary action, and focus rings.",
+      "Do use 1px hairline rules (Rule Gray on paper, Graphite Line on graphite) as the default way to separate regions.",
+      "Do give every focusable control the shared 3px Violet Focus outline — it is the accessibility contract, not a decorative flourish.",
+      "Do let a control's enabled/disabled or color state be the explicit-state signal the STORY calls for, instead of adding separate status text.",
+      "Do hold buttons, chips, and result tiles flat; reserve the one ambient shadow for the workspace panel only."
+    ],
+    "donts": [
+      "Don't add a second shadow value or stack shadows on top of borders; the system has exactly one shadow and it belongs to the workspace panel.",
+      "Don't introduce uppercase kicker/eyebrow labels above page or section titles — the only uppercase small-caps text in the product is the functional per-message sender label inside chat, and it does not generalize to other headings.",
+      "Don't use hard-offset (non-blurred) shadows or thick neobrutalist borders; Prism's world is soft-shadow-and-hairline, not that one.",
+      "Don't introduce a second typeface for emphasis or display text; hierarchy comes from weight/size/letter-spacing within the single Aptos/Segoe UI Variable stack.",
+      "Don't reuse the brand mark's rotated color bars as a general decorative motif; it is confined to the one brand lockup instance."
+    ]
+  }
+}
