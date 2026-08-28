@@ -61,8 +61,11 @@ jobs:
           docker run -d --name prism-smoke \
             -e PRISM_AUTH_MODE=development \
             -e NODE_ENV=development \
+            -e PRISM_DB_PATH=/tmp/prism.db \
+            -e PRISM_ARTIFACT_ROOT=/tmp/prism-artifacts \
             prism:ci-${{ github.sha }}
           sleep 5
+          docker logs prism-smoke
           docker exec prism-smoke node -e "fetch('http://127.0.0.1:3000/api/live').then(r=>r.json()).then(j=>{if(j.status!=='live')process.exit(1);console.log(JSON.stringify(j))}).catch(()=>process.exit(1))"
           docker exec prism-smoke node -e "fetch('http://127.0.0.1:3000/api/version').then(r=>r.json()).then(j=>{if(j.app!=='prism')process.exit(1);console.log(JSON.stringify(j))}).catch(()=>process.exit(1))"
           docker stop prism-smoke
