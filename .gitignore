@@ -1,0 +1,12 @@
+node_modules/
+dist/
+build/
+coverage/
+data/
+.env
+.env.*
+!.env.example
+*.db
+*.db-*
+.DS_Store
+.impeccable/hook.cache.json
