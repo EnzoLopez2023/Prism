@@ -33,3 +33,22 @@ test('audit rows are immutable', async t => {
   await fixture.repository.audit(owner, 'test', 'resource', '1', 'success')
   assert.throws(() => fixture.db.prepare('DELETE FROM app_audit_log').run(), /immutable/)
 })
+
+test('legacy prompts are searchable and reusable but remain read-only', async t => {
+  const fixture = testRepository()
+  t.after(() => fixture.close())
+  fixture.db.prepare(`
+    INSERT INTO prompts(title,body,category,tags,model,notes,is_favorite,usage_count,legacy_source_id)
+    VALUES (?,?,?,?,?,?,?,?,?)
+  `).run('Imported image prompt', 'Draw a quiet room', 'Image Gen', '["cinematic"]', 'gpt-image-2', 'Legacy note', 1, 0, 40)
+
+  const listed = await fixture.repository.listPrompts(other, { search: 'Image Gen', sort: 'title', order: 'asc' }) as Array<Record<string, unknown>>
+  assert.equal(listed.length, 1)
+  assert.equal(listed[0]?.is_read_only, 1)
+  assert.deepEqual(listed[0]?.tags, ['cinematic'])
+  assert.equal(await fixture.repository.usePrompt(other, Number(listed[0]?.id)), true)
+  assert.equal(await fixture.repository.savePrompt(other, Number(listed[0]?.id), {
+    title: 'Changed', body: 'Changed', category: 'General',
+  }), null)
+  assert.equal(await fixture.repository.deletePrompt(other, Number(listed[0]?.id)), false)
+})

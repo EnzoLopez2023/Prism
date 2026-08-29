@@ -175,8 +175,8 @@ export class PrismRepository {
     const clauses = ['((owner_tenant_id=? AND owner_oid=?) OR owner_oid IS NULL)']
     const params: unknown[] = [identity.tenantId, identity.oid]
     if (query.search) {
-      clauses.push('(title LIKE ? OR body LIKE ? OR notes LIKE ? OR tags LIKE ?)')
-      params.push(...Array(4).fill(`%${query.search}%`))
+      clauses.push('(title LIKE ? OR body LIKE ? OR category LIKE ? OR notes LIKE ? OR tags LIKE ?)')
+      params.push(...Array(5).fill(`%${query.search}%`))
     }
     if (query.category) { clauses.push('category=?'); params.push(query.category) }
     if (query.model) { clauses.push('model=?'); params.push(query.model) }
@@ -185,7 +185,7 @@ export class PrismRepository {
     const order = query.order === 'asc' ? 'ASC' : 'DESC'
     const limit = Math.min(100, Math.max(1, Number(query.limit) || 100))
     const offset = Math.min(10_000, Math.max(0, Number(query.offset) || 0))
-    const rows = this.db.prepare(`SELECT id,title,body,category,tags,model,notes,is_favorite,usage_count,created_at,updated_at FROM prompts WHERE ${clauses.join(' AND ')} ORDER BY ${sort} ${order} LIMIT ? OFFSET ?`).all(...params, limit, offset) as Record<string, unknown>[]
+    const rows = this.db.prepare(`SELECT id,title,body,category,tags,model,notes,is_favorite,usage_count,created_at,updated_at,CASE WHEN owner_oid IS NULL THEN 1 ELSE 0 END AS is_read_only FROM prompts WHERE ${clauses.join(' AND ')} ORDER BY ${sort} ${order} LIMIT ? OFFSET ?`).all(...params, limit, offset) as Record<string, unknown>[]
     return rows.map(row => ({ ...row, tags: JSON.parse(String(row.tags || '[]')) }))
   }
 

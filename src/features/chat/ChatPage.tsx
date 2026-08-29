@@ -4,11 +4,12 @@ import DeleteOutline from '@mui/icons-material/DeleteOutline'
 import Send from '@mui/icons-material/Send'
 import StopCircleOutlined from '@mui/icons-material/StopCircleOutlined'
 import {
-  Alert, Box, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, MenuItem, Paper, Select, Stack,
-  TextField, Tooltip, Typography,
+  Alert, Box, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, MenuItem, Paper, Popover,
+  Select, Stack, TextField, Tooltip, Typography,
 } from '@mui/material'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, type MouseEvent } from 'react'
 import ReactMarkdown from 'react-markdown'
+import { Link as RouterLink } from 'react-router-dom'
 import { PageHeading } from '../../components/PageHeading'
 import { apiBlob, apiFetch, apiHeaders } from '../../services/api'
 import { commitMediaMutation, type CommitDecision } from './mutationCommit'
@@ -17,7 +18,7 @@ import { boundedChatContext, type ChatContextMessage } from './chatContext'
 
 interface Conversation { id: number; title: string; updated_at: string; message_count: number }
 interface Message { id: string; type: 'user' | 'assistant'; content: string; timestamp: string; images?: string[] }
-interface Prompt { id: number; title: string; body: string }
+interface Prompt { id: number; title: string; body: string; category: string }
 interface MutationPreview { schema: string; intentId: string; confirmationPhrase: string; expiresAt: string; preview: { title: string; media: { id: string; title: string }[] } }
 interface PendingMutation { kind: 'playlists' | 'collections'; preview: MutationPreview; phrase: string; outcome?: CommitDecision }
 
@@ -73,6 +74,10 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([])
   const [question, setQuestion] = useState('')
   const [prompts, setPrompts] = useState<Prompt[]>([])
+  const [promptsLoaded, setPromptsLoaded] = useState(false)
+  const [promptsLoading, setPromptsLoading] = useState(false)
+  const [promptPickerAnchor, setPromptPickerAnchor] = useState<HTMLElement | null>(null)
+  const [promptSearch, setPromptSearch] = useState('')
   const [attached, setAttached] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
@@ -83,6 +88,11 @@ export default function ChatPage() {
   const transcriptRef = useRef<HTMLDivElement>(null)
   const objectUrls = useRef(new ObjectUrlRegistry())
   const conversationLoad = useRef(0)
+  const visiblePrompts = useMemo(() => {
+    const query = promptSearch.trim().toLowerCase()
+    if (!query) return prompts
+    return prompts.filter(prompt => prompt.title.toLowerCase().includes(query) || prompt.category.toLowerCase().includes(query))
+  }, [prompts, promptSearch])
 
   const reloadList = async () => {
     const data = await apiFetch<{ conversations: Conversation[] }>('/api/conversations')
@@ -90,7 +100,7 @@ export default function ChatPage() {
   }
 
   useEffect(() => {
-    Promise.all([reloadList(), apiFetch<Prompt[]>('/api/prompts?sort=title&order=asc').then(setPrompts)]).catch(error => setError(error.message))
+    void reloadList().catch(error => setError(error instanceof Error ? error.message : 'Conversations could not be loaded'))
   }, [])
   useEffect(() => () => {
     conversationLoad.current += 1
@@ -219,6 +229,20 @@ export default function ChatPage() {
     reader.readAsDataURL(file)
   }
 
+  const openPromptPicker = async (event: MouseEvent<HTMLElement>) => {
+    setPromptPickerAnchor(event.currentTarget)
+    if (promptsLoaded || promptsLoading) return
+    setPromptsLoading(true)
+    try {
+      setPrompts(await apiFetch<Prompt[]>('/api/prompts?sort=title&order=asc'))
+      setPromptsLoaded(true)
+    } catch (loadError) {
+      setError(loadError instanceof Error ? loadError.message : 'Saved prompts could not be loaded')
+    } finally {
+      setPromptsLoading(false)
+    }
+  }
+
   return (
     <Box className="page-shell chat-page">
       <PageHeading title="Assistant" description="A private, durable workspace with streamed answers and confirmed media actions." actions={
@@ -260,10 +284,38 @@ export default function ChatPage() {
           {attached && <Box className="attachment-preview"><img src={attached} alt="Pending attachment" /><Button size="small" onClick={() => setAttached(null)}>Remove</Button></Box>}
           <Box className="composer-row">
             <Tooltip title="Attach image"><IconButton component="label" aria-label="Attach image"><AttachFile /><input hidden type="file" accept="image/*" onChange={event => attachFile(event.target.files?.[0])} /></IconButton></Tooltip>
-            <Select size="small" displayEmpty value="" onChange={event => setQuestion(prompts.find(prompt => prompt.id === Number(event.target.value))?.body || '')} aria-label="Use saved prompt" sx={{ maxWidth: 150 }}>
-              <MenuItem value=""><Add fontSize="small" /> Prompt</MenuItem>
-              {prompts.map(prompt => <MenuItem key={prompt.id} value={prompt.id}>{prompt.title}</MenuItem>)}
-            </Select>
+            <Button variant="outlined" size="small" startIcon={<Add />} onClick={event => void openPromptPicker(event)} aria-haspopup="dialog" aria-expanded={Boolean(promptPickerAnchor)}>Prompt</Button>
+            <Popover
+              open={Boolean(promptPickerAnchor)}
+              anchorEl={promptPickerAnchor}
+              onClose={() => setPromptPickerAnchor(null)}
+              anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+              transformOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+            >
+              <Box className="chat-prompt-picker">
+                <Stack direction="row" alignItems="center" justifyContent="space-between" gap={1}>
+                  <Typography fontWeight={720}>Saved prompts</Typography>
+                  <Button component={RouterLink} to="/prompt-library" size="small" onClick={() => setPromptPickerAnchor(null)}>Open library</Button>
+                </Stack>
+                <TextField size="small" fullWidth placeholder="Search prompts…" value={promptSearch} onChange={event => setPromptSearch(event.target.value)} inputProps={{ 'aria-label': 'Search saved prompts' }} />
+                <Box className="chat-prompt-options">
+                  {promptsLoading ? <Typography color="text.secondary">Loading…</Typography> :
+                    visiblePrompts.length ? visiblePrompts.map(prompt => (
+                      <Button
+                        key={prompt.id}
+                        className="chat-prompt-option"
+                        onClick={() => {
+                          setQuestion(prompt.body)
+                          setPromptPickerAnchor(null)
+                        }}
+                      >
+                        <span>{prompt.title}</span>
+                        {prompt.category !== 'General' && <small>{prompt.category}</small>}
+                      </Button>
+                    )) : <Typography color="text.secondary">{prompts.length ? 'No matches' : 'No prompts saved yet'}</Typography>}
+                </Box>
+              </Box>
+            </Popover>
             <TextField multiline maxRows={7} fullWidth placeholder="Message Prism…" value={question} onChange={event => setQuestion(event.target.value)} onKeyDown={event => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); void send() } }} inputProps={{ maxLength: 32000 }} />
             {busy ? <IconButton color="error" onClick={() => aborter.current?.abort()} aria-label="Stop response"><StopCircleOutlined /></IconButton> : <IconButton color="primary" onClick={send} disabled={!question.trim()} aria-label="Send message"><Send /></IconButton>}
           </Box>

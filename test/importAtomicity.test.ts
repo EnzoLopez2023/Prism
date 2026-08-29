@@ -23,7 +23,7 @@ test('legacy import stages artifacts before one atomic database commit and clean
     INSERT INTO conversations VALUES(1,'Test','2026-01-01','2026-01-01',1,'hello');
     INSERT INTO conversation_messages VALUES(1,1,'m1','user','hello','2026-01-01');
     INSERT INTO conversation_images VALUES(1,1,'m1',0,X'01','image/png',1,'2026-01-01'),(2,1,'m1',1,X'02','image/png',1,'2026-01-01');
-    INSERT INTO prompts VALUES(1,'Prompt','Body','General','[]',NULL,NULL,0,0,'2026-01-01','2026-01-01');
+    INSERT INTO prompts VALUES(1,'Prompt','Body','Image Gen','["test","é"]','gpt-image-2','Notes',1,4,'2026-01-01','2026-01-02');
   `)
   source.close()
   const oracle = openDatabase(sourcePath, true)
@@ -64,6 +64,24 @@ test('legacy import stages artifacts before one atomic database commit and clean
   assert.equal(retried.artifactCount, 2)
   const adoptedTarget = openDatabase(targetPath, true)
   assert.equal((adoptedTarget.prepare('SELECT COUNT(*) AS count FROM conversation_images').get() as { count: number }).count, 2)
+  assert.deepEqual(adoptedTarget.prepare(`
+    SELECT id,title,body,category,tags,model,notes,is_favorite,usage_count,created_at,updated_at,owner_oid,legacy_source_id
+    FROM prompts
+  `).get(), {
+    id: 1,
+    title: 'Prompt',
+    body: 'Body',
+    category: 'Image Gen',
+    tags: '["test","é"]',
+    model: 'gpt-image-2',
+    notes: 'Notes',
+    is_favorite: 1,
+    usage_count: 4,
+    created_at: '2026-01-01',
+    updated_at: '2026-01-02',
+    owner_oid: null,
+    legacy_source_id: 1,
+  })
   adoptedTarget.close()
 
   const concurrentTarget = path.join(root, 'concurrent.db')

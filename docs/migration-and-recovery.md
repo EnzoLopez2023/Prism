@@ -34,6 +34,10 @@ The production rehearsal imported and matched 56 conversations, 230 messages,
 17 images, and 40 prompts: 343 rows, zero differences, zero foreign-key
 violations.
 
+The application image intentionally contains no production rows. Deploying Prism
+does not perform this migration automatically: until the operator completes the
+cutover below, `/home/data/prism.db` is a new empty authority.
+
 ## Cutover
 
 1. Quiesce only Hearth writes to conversations and prompts.

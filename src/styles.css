@@ -45,26 +45,53 @@ button, input, textarea { font: inherit; }
 .composer-row { display: flex; align-items: flex-end; gap: 8px; }
 .attachment-preview { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
 .attachment-preview img { width: 52px; height: 52px; object-fit: cover; border-radius: 7px; }
-.lab-prompt, .image-controls { display: grid; gap: 14px; padding: 18px; margin-bottom: 22px; }
-.analysis-strip { padding: 20px; margin-bottom: 22px; border: 1px solid #bdb0f5; background: #f4f1ff !important; }
-.model-grid, .image-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.lab-prompt, .image-controls { display: grid; gap: 16px; padding: 18px; margin-bottom: 22px; }
+.sample-prompt-picker { min-width: 0; display: grid; gap: 8px; }
+.sample-prompt-list { display: flex; flex-wrap: wrap; gap: 7px; }
+.sample-prompt-list .MuiChip-root { max-width: 100%; }
+.lab-action-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 18px; }
+.lab-action-row > .MuiButton-root { min-width: 128px; }
+.analysis-strip { display: grid; gap: 10px; padding: 20px; margin-bottom: 22px; border: 1px solid #bdb0f5; background: #f4f1ff !important; }
+.model-grid, .image-grid { display: grid; gap: 14px; }
+.model-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.image-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .model-result, .image-result { min-height: 300px; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
 .model-result-head { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid #dfe1ea; }
+.model-response { min-width: 0; margin: 0 !important; font: inherit !important; line-height: 1.62; white-space: pre-wrap; overflow-wrap: anywhere; }
+.result-meta { margin-top: auto; color: #5d6074; font-size: .75rem; }
+.lab-error { font-family: "SFMono-Regular", Consolas, monospace; font-size: .88em; }
+.lab-result-state { min-height: 210px; }
 .image-result img { width: 100%; max-height: 520px; object-fit: contain; background: #eceef4; }
-.control-row { display: flex; flex-wrap: wrap; gap: 10px; }
-.prompt-filters { display: grid; grid-template-columns: minmax(220px, 1fr) 220px auto; gap: 10px; margin-bottom: 18px; }
+.image-result-link { display: block; line-height: 0; border-radius: 8px; overflow: hidden; }
+.image-result-link:focus-visible { outline: 3px solid #b7a7ff; outline-offset: 3px; }
+.image-option-grid { display: grid; grid-template-columns: minmax(310px, auto) minmax(280px, 1fr); align-items: end; gap: 14px; }
+.source-image-row { display: grid; grid-template-columns: auto minmax(180px, 1fr) auto; align-items: center; gap: 12px; padding: 12px; border: 1px solid #dfe1ea; border-radius: 10px; }
+.source-image-row img { width: 52px; height: 52px; object-fit: cover; border-radius: 8px; }
+.source-image-copy { min-width: 0; }
+.image-generate-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.prompt-filters { display: grid; grid-template-columns: minmax(240px, 1.4fr) minmax(150px, .7fr) minmax(150px, .7fr) auto minmax(170px, .7fr); gap: 10px; margin-bottom: 18px; }
 .prompt-list { display: grid; gap: 10px; }
+.prompt-list-loading { padding-top: 2px; }
 .prompt-row { padding: 18px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; }
 .prompt-copy { min-width: 0; }
 .prompt-body { max-width: 80ch; margin: 7px 0 14px !important; white-space: pre-wrap; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
-.prompt-meta { display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; }
+.prompt-body.expanded { display: block; overflow: visible; }
+.prompt-notes { max-width: 75ch; margin-top: 14px !important; font-style: italic; white-space: pre-wrap; }
+.prompt-meta { min-width: 210px; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; }
+.prompt-actions { align-items: center; }
+.chat-prompt-picker { width: min(300px, calc(100vw - 32px)); display: grid; gap: 12px; padding: 14px; }
+.chat-prompt-options { max-height: 380px; display: grid; gap: 4px; overflow-y: auto; }
+.chat-prompt-option { min-height: 44px; display: flex !important; align-items: flex-start !important; flex-direction: column; padding: 8px 10px !important; color: #171824 !important; text-align: left; }
+.chat-prompt-option small { color: #5d6074; font-weight: 500; }
 .converter-drop { min-height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; padding: 30px; text-align: center; cursor: pointer; border-style: dashed; transition: border-color 160ms ease-out, background-color 160ms ease-out; }
 .converter-drop:hover { border-color: #6346db; background: #faf9ff; }
 .converter-drop:focus-within { outline: 3px solid #a897ef; outline-offset: 3px; }
 .converter-preview { margin-top: 18px; overflow: hidden; }
 .preview-head { display: flex; justify-content: space-between; align-items: center; padding: 18px; border-bottom: 1px solid #dfe1ea; }
 @media (max-width: 1080px) {
-  .model-grid, .image-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .image-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .prompt-filters { grid-template-columns: minmax(220px, 1fr) 1fr 1fr; }
+  .prompt-filter-search { grid-column: span 2; }
 }
 @media (max-width: 760px) {
   .app-frame { display: block; padding-bottom: 68px; }
@@ -76,7 +103,12 @@ button, input, textarea { font: inherit; }
   .page-heading { display: block; margin-bottom: 20px; }
   .page-actions { margin-top: 16px; }
   .model-grid, .image-grid { grid-template-columns: 1fr; }
-  .prompt-filters { grid-template-columns: 1fr; }
+  .lab-action-row, .image-option-grid, .source-image-row { grid-template-columns: 1fr; }
+  .lab-action-row > .MuiButton-root, .image-generate-row .MuiButton-root { width: 100%; }
+  .image-generate-row { align-items: stretch; flex-direction: column; }
+  .source-image-row img { width: 64px; height: 64px; }
+  .prompt-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .prompt-filter-search { grid-column: 1 / -1; }
   .prompt-row { grid-template-columns: 1fr; }
   .prompt-meta { flex-direction: row; align-items: center; }
   .chat-transcript { padding: 15px; max-height: none; }
