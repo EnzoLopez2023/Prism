@@ -20,6 +20,7 @@ jobs:
   build-and-push:
     needs: validate
     runs-on: ubuntu-latest
+    environment: production
     outputs:
       digest: ${{ steps.push.outputs.digest }}
       image_tag: ${{ steps.meta.outputs.tag }}
