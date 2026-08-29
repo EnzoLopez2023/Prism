@@ -48,10 +48,13 @@ Multi-stage Dockerfile:
 ## Bootstrap Order
 
 1. **Azure infrastructure**: Provision ACR, App Service, Entra app registration (via Bicep/IaC, separate repo)
-2. **GitHub OIDC**: Create federated credential on the Entra app registration for GitHub Actions
+2. **GitHub OIDC**: Create a federated credential on the Entra app registration referenced by `AZURE_CLIENT_ID` with:
+   - Issuer: `https://token.actions.githubusercontent.com`
+   - Subject: `repo:EnzoLopez2023@123000731/Prism@1349806449:environment:production`
+   - Audience: `api://AzureADTokenExchange`
 3. **GitHub repo config**: Set repository variables listed above
 4. **App Service config**: Set app settings listed above
-5. **First deploy**: Push to `main` or trigger Deploy workflow manually
+5. **First deploy**: Push to `main` or trigger the CI workflow manually
 6. **Verify**: `GET /api/live`, `GET /api/ready`, `GET /api/version`
 
 ## Health Endpoints
