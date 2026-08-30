@@ -1,9 +1,21 @@
-import AutoAwesomeOutlined from '@mui/icons-material/AutoAwesomeOutlined'
-import ChatBubbleOutline from '@mui/icons-material/ChatBubbleOutline'
-import ImageOutlined from '@mui/icons-material/ImageOutlined'
-import LibraryBooksOutlined from '@mui/icons-material/LibraryBooksOutlined'
-import TransformOutlined from '@mui/icons-material/TransformOutlined'
-import { Box, Chip, Typography } from '@mui/material'
+import {
+  IonBadge,
+  IonContent,
+  IonIcon,
+  IonList,
+  IonMenu,
+  IonMenuButton,
+  IonMenuToggle,
+  IonSplitPane,
+} from '@ionic/react'
+import {
+  albumsOutline,
+  chatbubbleEllipsesOutline,
+  codeSlashOutline,
+  gitCompareOutline,
+  imageOutline,
+  shieldCheckmarkOutline,
+} from 'ionicons/icons'
 import { lazy, Suspense } from 'react'
 import { NavLink, Navigate, Route, Routes } from 'react-router-dom'
 
@@ -14,32 +26,47 @@ const PromptLibraryPage = lazy(() => import('../features/prompts/PromptLibraryPa
 const ConverterPage = lazy(() => import('../features/converter/ConverterPage'))
 
 const nav = [
-  ['/chat', 'Assistant', ChatBubbleOutline],
-  ['/ai-test', 'Model lab', AutoAwesomeOutlined],
-  ['/ai-image-test', 'Image lab', ImageOutlined],
-  ['/prompt-library', 'Prompts', LibraryBooksOutlined],
-  ['/converter', 'Converter', TransformOutlined],
+  ['/chat', 'Assistant', chatbubbleEllipsesOutline],
+  ['/ai-test', 'Model lab', gitCompareOutline],
+  ['/ai-image-test', 'Image lab', imageOutline],
+  ['/prompt-library', 'Prompts', albumsOutline],
+  ['/converter', 'Converter', codeSlashOutline],
 ] as const
 
 export function App() {
   return (
-    <Box className="app-frame">
-      <Box component="aside" className="app-rail">
-        <Box className="brand-lockup">
-          <Box className="brand-mark" aria-hidden="true"><span /><span /><span /></Box>
-          <Box><Typography className="brand-name">Prism</Typography><Typography className="brand-note">AI workbench</Typography></Box>
-        </Box>
-        <Box component="nav" aria-label="Primary navigation" className="rail-nav">
-          {nav.map(([to, label, Icon]) => (
-            <NavLink key={to} to={to} className={({ isActive }) => `rail-link${isActive ? ' active' : ''}`}>
-              <Icon fontSize="small" /><span>{label}</span>
-            </NavLink>
-          ))}
-        </Box>
-        <Chip size="small" label="Local authority" className="authority-chip" />
-      </Box>
-      <Box component="main" className="app-main">
-        <Suspense fallback={<Box className="route-loading" role="status">Preparing workspace…</Box>}>
+    <IonSplitPane contentId="prism-main" when="(min-width: 761px)" className="app-frame">
+      <IonMenu contentId="prism-main" menuId="prism-navigation" type="overlay" className="app-menu">
+        <IonContent className="app-rail" scrollY={false}>
+          <div className="rail-inner">
+            <div className="brand-lockup">
+              <img className="brand-icon" src="/apple-touch-icon.png" alt="" />
+              <div><strong className="brand-name">Prism</strong><span className="brand-note">AI workbench</span></div>
+            </div>
+            <nav aria-label="Primary navigation">
+              <IonList className="rail-nav">
+                {nav.map(([to, label, icon]) => (
+                  <IonMenuToggle autoHide={false} key={to}>
+                    <NavLink
+                      to={to}
+                      className={({ isActive }) => `rail-link${isActive ? ' active' : ''}`}
+                    >
+                      <IonIcon icon={icon} /><span>{label}</span>
+                    </NavLink>
+                  </IonMenuToggle>
+                ))}
+              </IonList>
+            </nav>
+            <IonBadge className="authority-chip">
+              <IonIcon icon={shieldCheckmarkOutline} />
+              <span>Local authority</span>
+            </IonBadge>
+          </div>
+        </IonContent>
+      </IonMenu>
+      <main id="prism-main" className="app-main">
+        <IonMenuButton className="mobile-menu-trigger" menu="prism-navigation" />
+        <Suspense fallback={<div className="route-loading" role="status">Preparing workspace…</div>}>
           <Routes>
             <Route path="/chat" element={<ChatPage />} />
             <Route path="/ai-test" element={<ModelLabPage />} />
@@ -49,7 +76,7 @@ export function App() {
             <Route path="*" element={<Navigate to="/chat" replace />} />
           </Routes>
         </Suspense>
-      </Box>
-    </Box>
+      </main>
+    </IonSplitPane>
   )
 }

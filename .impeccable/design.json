@@ -1,128 +1,414 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-28T16:53:39Z",
+  "generatedAt": "2026-08-30T14:58:58.536Z",
   "title": "Design System: Prism",
   "extensions": {
     "colorMeta": {
-      "spectral-violet": { "role": "primary", "displayName": "Spectral Violet", "canonical": "#6346db", "tonalRamp": ["oklch(15% 0.215 285.0)", "oklch(28% 0.215 285.0)", "oklch(40% 0.215 285.0)", "oklch(52% 0.215 285.0)", "oklch(68% 0.215 285.0)", "oklch(80% 0.215 285.0)", "oklch(88% 0.215 285.0)", "oklch(95% 0.215 285.0)"] },
-      "violet-deep": { "role": "primary-dark", "displayName": "Violet Deep", "canonical": "#4930b5", "tonalRamp": ["oklch(15% 0.20 284.0)", "oklch(24% 0.20 284.0)", "oklch(34% 0.20 284.0)", "oklch(44% 0.20 284.0)", "oklch(56% 0.20 284.0)", "oklch(70% 0.20 284.0)", "oklch(84% 0.20 284.0)", "oklch(95% 0.20 284.0)"] },
-      "bright-paper": { "role": "neutral", "displayName": "Bright Paper", "canonical": "#f3f4f8", "tonalRamp": ["oklch(15% 0.005 275.0)", "oklch(28% 0.005 275.0)", "oklch(40% 0.005 275.0)", "oklch(55% 0.005 275.0)", "oklch(68% 0.005 275.0)", "oklch(80% 0.005 275.0)", "oklch(88% 0.005 275.0)", "oklch(97% 0.005 275.0)"] },
-      "pure-paper": { "role": "neutral-surface", "displayName": "Pure Paper", "canonical": "#ffffff", "tonalRamp": ["oklch(15% 0 0)", "oklch(30% 0 0)", "oklch(45% 0 0)", "oklch(60% 0 0)", "oklch(75% 0 0)", "oklch(88% 0 0)", "oklch(95% 0 0)", "oklch(100% 0 0)"] },
-      "ink": { "role": "neutral-text", "displayName": "Ink", "canonical": "#171824", "tonalRamp": ["oklch(10% 0.02 281.0)", "oklch(20% 0.02 281.0)", "oklch(32% 0.02 281.0)", "oklch(45% 0.02 281.0)", "oklch(60% 0.02 281.0)", "oklch(75% 0.02 281.0)", "oklch(88% 0.02 281.0)", "oklch(95% 0.02 281.0)"] },
-      "slate": { "role": "neutral-text-secondary", "displayName": "Slate", "canonical": "#5d6074", "tonalRamp": ["oklch(15% 0.02 281.0)", "oklch(28% 0.02 281.0)", "oklch(40% 0.02 281.0)", "oklch(48% 0.02 281.0)", "oklch(62% 0.02 281.0)", "oklch(75% 0.02 281.0)", "oklch(88% 0.02 281.0)", "oklch(95% 0.02 281.0)"] },
-      "rule-gray": { "role": "neutral-border", "displayName": "Rule Gray", "canonical": "#dfe1ea", "tonalRamp": ["oklch(15% 0.01 275.0)", "oklch(28% 0.01 275.0)", "oklch(40% 0.01 275.0)", "oklch(55% 0.01 275.0)", "oklch(68% 0.01 275.0)", "oklch(80% 0.01 275.0)", "oklch(90% 0.01 275.0)", "oklch(97% 0.01 275.0)"] },
-      "graphite": { "role": "neutral-inverse", "displayName": "Graphite", "canonical": "#202130", "tonalRamp": ["oklch(15% 0.028 281.2)", "oklch(25% 0.028 281.2)", "oklch(35% 0.028 281.2)", "oklch(48% 0.028 281.2)", "oklch(62% 0.028 281.2)", "oklch(76% 0.028 281.2)", "oklch(88% 0.028 281.2)", "oklch(95% 0.028 281.2)"] },
-      "graphite-deep": { "role": "neutral-inverse-surface", "displayName": "Graphite Deep", "canonical": "#2a2b3d", "tonalRamp": ["oklch(15% 0.025 280.0)", "oklch(26% 0.025 280.0)", "oklch(37% 0.025 280.0)", "oklch(50% 0.025 280.0)", "oklch(64% 0.025 280.0)", "oklch(78% 0.025 280.0)", "oklch(88% 0.025 280.0)", "oklch(95% 0.025 280.0)"] },
-      "graphite-line": { "role": "neutral-inverse-border", "displayName": "Graphite Line", "canonical": "#303245", "tonalRamp": ["oklch(15% 0.022 280.0)", "oklch(27% 0.022 280.0)", "oklch(38% 0.022 280.0)", "oklch(51% 0.022 280.0)", "oklch(65% 0.022 280.0)", "oklch(78% 0.022 280.0)", "oklch(88% 0.022 280.0)", "oklch(95% 0.022 280.0)"] },
-      "confirm-green": { "role": "success", "displayName": "Confirm Green", "canonical": "#16845b", "tonalRamp": ["oklch(15% 0.114 161.8)", "oklch(28% 0.114 161.8)", "oklch(40% 0.114 161.8)", "oklch(55% 0.114 161.8)", "oklch(68% 0.114 161.8)", "oklch(80% 0.114 161.8)", "oklch(88% 0.114 161.8)", "oklch(95% 0.114 161.8)"] },
-      "warning-amber": { "role": "warning", "displayName": "Warning Amber", "canonical": "#a65f00", "tonalRamp": ["oklch(15% 0.127 62.5)", "oklch(28% 0.127 62.5)", "oklch(40% 0.127 62.5)", "oklch(55% 0.127 62.5)", "oklch(68% 0.127 62.5)", "oklch(80% 0.127 62.5)", "oklch(88% 0.127 62.5)", "oklch(95% 0.127 62.5)"] },
-      "alert-red": { "role": "error", "displayName": "Alert Red", "canonical": "#b4233e", "tonalRamp": ["oklch(15% 0.179 17.0)", "oklch(28% 0.179 17.0)", "oklch(40% 0.179 17.0)", "oklch(51% 0.179 17.0)", "oklch(68% 0.179 17.0)", "oklch(80% 0.179 17.0)", "oklch(88% 0.179 17.0)", "oklch(95% 0.179 17.0)"] }
+      "spectral-violet": {
+        "role": "primary",
+        "displayName": "Spectral Violet",
+        "canonical": "#6346db",
+        "tonalRamp": ["oklch(15% 0.215 285.0)", "oklch(28% 0.215 285.0)", "oklch(40% 0.215 285.0)", "oklch(52% 0.215 285.0)", "oklch(64% 0.215 285.0)", "oklch(76% 0.215 285.0)", "oklch(88% 0.215 285.0)", "oklch(95% 0.215 285.0)"]
+      },
+      "violet-deep": {
+        "role": "primary-dark",
+        "displayName": "Violet Deep",
+        "canonical": "#4930b5",
+        "tonalRamp": ["oklch(15% 0.196 283.0)", "oklch(28% 0.196 283.0)", "oklch(40% 0.196 283.0)", "oklch(52% 0.196 283.0)", "oklch(64% 0.196 283.0)", "oklch(76% 0.196 283.0)", "oklch(88% 0.196 283.0)", "oklch(95% 0.196 283.0)"]
+      },
+      "violet-wash": {
+        "role": "primary-container",
+        "displayName": "Violet Wash",
+        "canonical": "#ebe7ff",
+        "tonalRamp": ["oklch(15% 0.032 293.4)", "oklch(28% 0.032 293.4)", "oklch(40% 0.032 293.4)", "oklch(52% 0.032 293.4)", "oklch(64% 0.032 293.4)", "oklch(76% 0.032 293.4)", "oklch(88% 0.032 293.4)", "oklch(95% 0.032 293.4)"]
+      },
+      "violet-mist": {
+        "role": "primary-container",
+        "displayName": "Violet Mist",
+        "canonical": "#f4f1ff",
+        "tonalRamp": ["oklch(15% 0.019 295.9)", "oklch(28% 0.019 295.9)", "oklch(40% 0.019 295.9)", "oklch(52% 0.019 295.9)", "oklch(64% 0.019 295.9)", "oklch(76% 0.019 295.9)", "oklch(88% 0.019 295.9)", "oklch(95% 0.019 295.9)"]
+      },
+      "violet-frost": {
+        "role": "primary-container",
+        "displayName": "Violet Frost",
+        "canonical": "#faf9ff",
+        "tonalRamp": ["oklch(15% 0.008 293.9)", "oklch(28% 0.008 293.9)", "oklch(40% 0.008 293.9)", "oklch(52% 0.008 293.9)", "oklch(64% 0.008 293.9)", "oklch(76% 0.008 293.9)", "oklch(88% 0.008 293.9)", "oklch(95% 0.008 293.9)"]
+      },
+      "violet-line": {
+        "role": "primary-border",
+        "displayName": "Violet Line",
+        "canonical": "#bdb0f5",
+        "tonalRamp": ["oklch(15% 0.098 292.7)", "oklch(28% 0.098 292.7)", "oklch(40% 0.098 292.7)", "oklch(52% 0.098 292.7)", "oklch(64% 0.098 292.7)", "oklch(76% 0.098 292.7)", "oklch(88% 0.098 292.7)", "oklch(95% 0.098 292.7)"]
+      },
+      "violet-focus": {
+        "role": "focus",
+        "displayName": "Violet Focus",
+        "canonical": "#b7a7ff",
+        "tonalRamp": ["oklch(15% 0.124 291.6)", "oklch(28% 0.124 291.6)", "oklch(40% 0.124 291.6)", "oklch(52% 0.124 291.6)", "oklch(64% 0.124 291.6)", "oklch(76% 0.124 291.6)", "oklch(88% 0.124 291.6)", "oklch(95% 0.124 291.6)"]
+      },
+      "refraction-violet": {
+        "role": "secondary",
+        "displayName": "Refraction Violet",
+        "canonical": "#8f72ff",
+        "tonalRamp": ["oklch(15% 0.201 289.0)", "oklch(28% 0.201 289.0)", "oklch(40% 0.201 289.0)", "oklch(52% 0.201 289.0)", "oklch(64% 0.201 289.0)", "oklch(76% 0.201 289.0)", "oklch(88% 0.201 289.0)", "oklch(95% 0.201 289.0)"]
+      },
+      "refraction-cyan": {
+        "role": "secondary",
+        "displayName": "Refraction Cyan",
+        "canonical": "#45b7db",
+        "tonalRamp": ["oklch(15% 0.113 222.7)", "oklch(28% 0.113 222.7)", "oklch(40% 0.113 222.7)", "oklch(52% 0.113 222.7)", "oklch(64% 0.113 222.7)", "oklch(76% 0.113 222.7)", "oklch(88% 0.113 222.7)", "oklch(95% 0.113 222.7)"]
+      },
+      "refraction-pink": {
+        "role": "tertiary",
+        "displayName": "Refraction Pink",
+        "canonical": "#e789b4",
+        "tonalRamp": ["oklch(15% 0.125 351.7)", "oklch(28% 0.125 351.7)", "oklch(40% 0.125 351.7)", "oklch(52% 0.125 351.7)", "oklch(64% 0.125 351.7)", "oklch(76% 0.125 351.7)", "oklch(88% 0.125 351.7)", "oklch(95% 0.125 351.7)"]
+      },
+      "refraction-pink-light": {
+        "role": "tertiary",
+        "displayName": "Refraction Pink Light",
+        "canonical": "#f09fc3",
+        "tonalRamp": ["oklch(15% 0.106 351.5)", "oklch(28% 0.106 351.5)", "oklch(40% 0.106 351.5)", "oklch(52% 0.106 351.5)", "oklch(64% 0.106 351.5)", "oklch(76% 0.106 351.5)", "oklch(88% 0.106 351.5)", "oklch(95% 0.106 351.5)"]
+      },
+      "optical-paper": {
+        "role": "neutral",
+        "displayName": "Optical Paper",
+        "canonical": "#f4f4f9",
+        "tonalRamp": ["oklch(15% 0.007 286.3)", "oklch(28% 0.007 286.3)", "oklch(40% 0.007 286.3)", "oklch(52% 0.007 286.3)", "oklch(64% 0.007 286.3)", "oklch(76% 0.007 286.3)", "oklch(88% 0.007 286.3)", "oklch(95% 0.007 286.3)"]
+      },
+      "bright-paper": {
+        "role": "neutral",
+        "displayName": "Bright Paper",
+        "canonical": "#f3f4f8",
+        "tonalRamp": ["oklch(15% 0.005 275.0)", "oklch(28% 0.005 275.0)", "oklch(40% 0.005 275.0)", "oklch(52% 0.005 275.0)", "oklch(64% 0.005 275.0)", "oklch(76% 0.005 275.0)", "oklch(88% 0.005 275.0)", "oklch(95% 0.005 275.0)"]
+      },
+      "pure-paper": {
+        "role": "neutral-surface",
+        "displayName": "Pure Paper",
+        "canonical": "#ffffff",
+        "tonalRamp": ["oklch(15% 0.000 0.0)", "oklch(28% 0.000 0.0)", "oklch(40% 0.000 0.0)", "oklch(52% 0.000 0.0)", "oklch(64% 0.000 0.0)", "oklch(76% 0.000 0.0)", "oklch(88% 0.000 0.0)", "oklch(95% 0.000 0.0)"]
+      },
+      "ink": {
+        "role": "neutral-text",
+        "displayName": "Ink",
+        "canonical": "#171824",
+        "tonalRamp": ["oklch(15% 0.024 280.5)", "oklch(28% 0.024 280.5)", "oklch(40% 0.024 280.5)", "oklch(52% 0.024 280.5)", "oklch(64% 0.024 280.5)", "oklch(76% 0.024 280.5)", "oklch(88% 0.024 280.5)", "oklch(95% 0.024 280.5)"]
+      },
+      "slate": {
+        "role": "neutral-text-secondary",
+        "displayName": "Slate",
+        "canonical": "#5d6074",
+        "tonalRamp": ["oklch(15% 0.032 278.4)", "oklch(28% 0.032 278.4)", "oklch(40% 0.032 278.4)", "oklch(52% 0.032 278.4)", "oklch(64% 0.032 278.4)", "oklch(76% 0.032 278.4)", "oklch(88% 0.032 278.4)", "oklch(95% 0.032 278.4)"]
+      },
+      "rule-gray": {
+        "role": "neutral-border",
+        "displayName": "Rule Gray",
+        "canonical": "#dfe1ea",
+        "tonalRamp": ["oklch(15% 0.012 276.1)", "oklch(28% 0.012 276.1)", "oklch(40% 0.012 276.1)", "oklch(52% 0.012 276.1)", "oklch(64% 0.012 276.1)", "oklch(76% 0.012 276.1)", "oklch(88% 0.012 276.1)", "oklch(95% 0.012 276.1)"]
+      },
+      "optical-line": {
+        "role": "neutral-border",
+        "displayName": "Optical Line",
+        "canonical": "rgba(73, 66, 108, 0.15)",
+        "tonalRamp": ["oklch(15% 0.070 290.6)", "oklch(28% 0.070 290.6)", "oklch(40% 0.070 290.6)", "oklch(52% 0.070 290.6)", "oklch(64% 0.070 290.6)", "oklch(76% 0.070 290.6)", "oklch(88% 0.070 290.6)", "oklch(95% 0.070 290.6)"]
+      },
+      "graphite-glass": {
+        "role": "neutral-inverse-surface",
+        "displayName": "Graphite Glass",
+        "canonical": "rgba(28, 29, 43, 0.7)",
+        "tonalRamp": ["oklch(15% 0.027 281.0)", "oklch(28% 0.027 281.0)", "oklch(40% 0.027 281.0)", "oklch(52% 0.027 281.0)", "oklch(64% 0.027 281.0)", "oklch(76% 0.027 281.0)", "oklch(88% 0.027 281.0)", "oklch(95% 0.027 281.0)"]
+      },
+      "rail-text": {
+        "role": "neutral-inverse-text",
+        "displayName": "Rail Text",
+        "canonical": "#f7f5ff",
+        "tonalRamp": ["oklch(15% 0.013 295.3)", "oklch(28% 0.013 295.3)", "oklch(40% 0.013 295.3)", "oklch(52% 0.013 295.3)", "oklch(64% 0.013 295.3)", "oklch(76% 0.013 295.3)", "oklch(88% 0.013 295.3)", "oklch(95% 0.013 295.3)"]
+      },
+      "rail-muted": {
+        "role": "neutral-inverse-text-secondary",
+        "displayName": "Rail Muted",
+        "canonical": "#c4c5d3",
+        "tonalRamp": ["oklch(15% 0.019 282.7)", "oklch(28% 0.019 282.7)", "oklch(40% 0.019 282.7)", "oklch(52% 0.019 282.7)", "oklch(64% 0.019 282.7)", "oklch(76% 0.019 282.7)", "oklch(88% 0.019 282.7)", "oklch(95% 0.019 282.7)"]
+      },
+      "confirm-green": {
+        "role": "success",
+        "displayName": "Confirm Green",
+        "canonical": "#16845b",
+        "tonalRamp": ["oklch(15% 0.114 161.8)", "oklch(28% 0.114 161.8)", "oklch(40% 0.114 161.8)", "oklch(52% 0.114 161.8)", "oklch(64% 0.114 161.8)", "oklch(76% 0.114 161.8)", "oklch(88% 0.114 161.8)", "oklch(95% 0.114 161.8)"]
+      },
+      "warning-amber": {
+        "role": "warning",
+        "displayName": "Warning Amber",
+        "canonical": "#a65f00",
+        "tonalRamp": ["oklch(15% 0.127 62.5)", "oklch(28% 0.127 62.5)", "oklch(40% 0.127 62.5)", "oklch(52% 0.127 62.5)", "oklch(64% 0.127 62.5)", "oklch(76% 0.127 62.5)", "oklch(88% 0.127 62.5)", "oklch(95% 0.127 62.5)"]
+      },
+      "alert-red": {
+        "role": "error",
+        "displayName": "Alert Red",
+        "canonical": "#b4233e",
+        "tonalRamp": ["oklch(15% 0.179 17.0)", "oklch(28% 0.179 17.0)", "oklch(40% 0.179 17.0)", "oklch(52% 0.179 17.0)", "oklch(64% 0.179 17.0)", "oklch(76% 0.179 17.0)", "oklch(88% 0.179 17.0)", "oklch(95% 0.179 17.0)"]
+      }
     },
     "typographyMeta": {
-      "headline": { "displayName": "Headline", "purpose": "The one PageHeading title per workspace; largest text in the system." },
-      "title": { "displayName": "Title", "purpose": "In-panel section headers: analysis heading, saved-prompt title." },
-      "body": { "displayName": "Body", "purpose": "Descriptions, message content, prompt bodies." },
-      "label": { "displayName": "Label", "purpose": "Functional per-message sender tag (USER/ASSISTANT) — the system's only uppercase small-caps text." },
-      "nav-label": { "displayName": "Nav Label", "purpose": "Rail link text, desktop and mobile bottom-bar." },
-      "mono": { "displayName": "Mono", "purpose": "Code blocks inside streamed assistant markdown." }
+      "marketing-display": {
+        "displayName": "Marketing Display",
+        "purpose": "Persuade first-viewport offer only; Archivo Variable stretched to 112%."
+      },
+      "marketing-heading": {
+        "displayName": "Marketing Heading",
+        "purpose": "Primary Persuade section statements; Archivo Variable stretched to 108%."
+      },
+      "workspace-headline": {
+        "displayName": "Workspace Headline",
+        "purpose": "The one page title per authenticated task workspace."
+      },
+      "workspace-title": {
+        "displayName": "Workspace Title",
+        "purpose": "In-panel sections and saved-item titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Authenticated content and supporting marketing copy in the Aptos stack."
+      },
+      "action-label": {
+        "displayName": "Action Label",
+        "purpose": "The 52px Persuade sign-in action."
+      },
+      "control-label": {
+        "displayName": "Control Label",
+        "purpose": "Flat 40px MUI actions inside authenticated task workspaces."
+      },
+      "label": {
+        "displayName": "Functional Label",
+        "purpose": "Tracked uppercase content identity, such as chat authors; never a decorative eyebrow."
+      },
+      "nav-label": {
+        "displayName": "Navigation Label",
+        "purpose": "Authenticated rail links and compact marketing navigation."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Code blocks and technical error output only."
+      }
     },
     "shadows": [
-      { "name": "panel-lift", "value": "0 12px 28px rgba(33,35,52,0.06)", "purpose": "The system's only shadow. Lifts the single active workspace panel a fraction off the bright-paper canvas." }
+      {
+        "name": "workspace-panel-lift",
+        "value": "0 12px 28px rgba(33, 35, 52, 0.06)",
+        "purpose": "Restrained lift under the real task workspace."
+      },
+      {
+        "name": "graphite-menu-separation",
+        "value": "18px 0 48px rgba(24, 23, 38, 0.12)",
+        "purpose": "Separates the frosted split pane from the paper canvas."
+      },
+      {
+        "name": "marketing-primary-lift",
+        "value": "0 14px 28px rgba(73, 48, 181, 0.25), inset 0 1px rgba(255, 255, 255, 0.2)",
+        "purpose": "Tactile emphasis for the 52px Microsoft sign-in action."
+      },
+      {
+        "name": "folding-workspace-lift",
+        "value": "0 32px 80px rgba(38, 31, 62, 0.2), 0 8px 24px rgba(38, 31, 62, 0.1)",
+        "purpose": "Holds the illustrative app window above the optical field."
+      },
+      {
+        "name": "floating-glass-lift",
+        "value": "0 12px 30px rgba(47, 38, 81, 0.13)",
+        "purpose": "Confined to small floating state labels in the hero."
+      },
+      {
+        "name": "closing-graphite-lift",
+        "value": "0 34px 78px rgba(31, 27, 48, 0.22)",
+        "purpose": "Supports the single dark closing volume."
+      }
     ],
     "motion": [
-      { "name": "ease-standard", "value": "160ms ease-out", "purpose": "Default transition for rail-link color/background, converter-dropzone border/background." }
+      {
+        "name": "state-standard",
+        "value": "0.2s ease-in-out",
+        "purpose": "Color and background changes on navigation and glass controls."
+      },
+      {
+        "name": "ios-response",
+        "value": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "purpose": "Lift and transform response for Persuade controls and folded planes."
+      },
+      {
+        "name": "plane-response",
+        "value": "0.22s cubic-bezier(0.32, 0.72, 0, 1)",
+        "purpose": "Bounded pointer tilt on the hero workspace plane."
+      },
+      {
+        "name": "scene-enter",
+        "value": "0.55s cubic-bezier(0.32, 0.72, 0, 1)",
+        "purpose": "Opacity, blur, and clipping transition when the illustrative tool scene changes."
+      }
     ],
     "breakpoints": [
-      { "name": "grid-collapse", "value": "1080px" },
-      { "name": "mobile", "value": "760px" }
+      {
+        "name": "landing-wide",
+        "value": "1160px"
+      },
+      {
+        "name": "workspace-grid-step",
+        "value": "1080px"
+      },
+      {
+        "name": "landing-stack",
+        "value": "920px"
+      },
+      {
+        "name": "workbench-split",
+        "value": "761px"
+      },
+      {
+        "name": "landing-mobile",
+        "value": "640px"
+      }
     ]
   },
   "components": [
     {
-      "name": "Primary Button",
+      "name": "Marketing Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary-marketing",
+      "description": "The primary Continue with Microsoft action on Persuade surfaces.",
+      "html": "<button class=\"ds-marketing-primary\"><span class=\"ds-microsoft-mark\" aria-hidden=\"true\"><i></i><i></i><i></i><i></i></span><span>Continue with Microsoft</span><svg aria-hidden=\"true\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></button>",
+      "css": ".ds-marketing-primary { min-height: 52px; display: inline-flex; align-items: center; gap: 10px; padding: 0 19px; border: 0; border-radius: 14px; color: #fff; background: #6346db; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; font-size: 1rem; font-weight: 720; letter-spacing: -0.01em; box-shadow: 0 14px 28px rgba(73, 48, 181, 0.25), inset 0 1px rgba(255, 255, 255, 0.2); transition: transform 0.2s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.2s cubic-bezier(0.32, 0.72, 0, 1), background 0.2s ease-in-out; } .ds-marketing-primary:hover { background: #4930b5; transform: translateY(-2px); box-shadow: 0 18px 34px rgba(73, 48, 181, 0.32), inset 0 1px rgba(255, 255, 255, 0.2); } .ds-marketing-primary:active { background: #3f299f; transform: translateY(0); } .ds-marketing-primary:focus-visible { outline: 3px solid #b7a7ff; outline-offset: 3px; } .ds-microsoft-mark { width: 18px; height: 18px; display: grid; flex: 0 0 18px; grid-template-columns: 1fr 1fr; gap: 2px; } .ds-microsoft-mark i:nth-child(1) { background: #f25022; } .ds-microsoft-mark i:nth-child(2) { background: #7fba00; } .ds-microsoft-mark i:nth-child(3) { background: #00a4ef; } .ds-microsoft-mark i:nth-child(4) { background: #ffb900; }"
+    },
+    {
+      "name": "Operate Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "The one primary action per workspace (Generate, Run comparison, New prompt).",
-      "html": "<button class=\"ds-btn-primary\">Run comparison</button>",
-      "css": ".ds-btn-primary { background: #6346db; color: #fff; min-height: 40px; padding: 0 16px; border: none; border-radius: 10px; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.88rem; font-weight: 680; text-transform: none; box-shadow: none; transition: background-color 0.16s ease-out; } .ds-btn-primary:hover { background: #4930b5; } .ds-btn-primary:focus-visible { outline: 3px solid #b7a7ff; outline-offset: 2px; }"
+      "description": "The flat primary action inside an authenticated task workspace.",
+      "html": "<button class=\"ds-operate-primary\">Run comparison</button>",
+      "css": ".ds-operate-primary { min-height: 40px; padding: 0 16px; border: 0; border-radius: 14px; color: #fff; background: #6346db; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.88rem; font-weight: 680; text-transform: none; box-shadow: none; transition: background 0.2s ease-in-out; } .ds-operate-primary:hover { background: #4930b5; } .ds-operate-primary:active { background: #4930b5; } .ds-operate-primary:focus-visible { outline: 3px solid #b7a7ff; outline-offset: 3px; }"
     },
     {
       "name": "Outlined Button",
       "kind": "button",
       "refersTo": "button-outlined",
-      "description": "Secondary file/attach actions (Browse files, Add source image).",
-      "html": "<button class=\"ds-btn-outlined\">Browse files</button>",
-      "css": ".ds-btn-outlined { background: transparent; color: #171824; min-height: 40px; padding: 0 16px; border: 1px solid #dfe1ea; border-radius: 10px; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.88rem; font-weight: 680; box-shadow: none; transition: border-color 0.16s ease-out, background-color 0.16s ease-out; } .ds-btn-outlined:hover { border-color: #6346db; background: #faf9ff; } .ds-btn-outlined:focus-visible { outline: 3px solid #b7a7ff; outline-offset: 2px; }"
+      "description": "Secondary file and attachment actions on paper.",
+      "html": "<button class=\"ds-button-outlined\">Browse files</button>",
+      "css": ".ds-button-outlined { min-height: 40px; padding: 0 16px; border: 1px solid #dfe1ea; border-radius: 14px; color: #171824; background: transparent; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.88rem; font-weight: 680; box-shadow: none; transition: border-color 0.16s ease-out, background 0.16s ease-out; } .ds-button-outlined:hover { border-color: #6346db; background: #faf9ff; } .ds-button-outlined:active { background: #f4f1ff; } .ds-button-outlined:focus-visible { outline: 3px solid #b7a7ff; outline-offset: 3px; }"
     },
     {
-      "name": "Rail Nav Link",
+      "name": "Outlined Input",
+      "kind": "input",
+      "description": "The 14px MUI field geometry used throughout authenticated workspaces.",
+      "html": "<label class=\"ds-field\"><span>Prompt</span><input class=\"ds-input\" value=\"Explain the tradeoffs in plain language.\" /></label>",
+      "css": ".ds-field { display: grid; gap: 8px; color: #5d6074; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.72rem; font-weight: 620; } .ds-input { min-height: 44px; padding: 10px 14px; border: 1px solid #dfe1ea; border-radius: 14px; color: #171824; background: #fff; font: inherit; font-size: 1rem; font-weight: 400; transition: border-color 0.16s ease-out; } .ds-input:hover { border-color: #bdb0f5; } .ds-input:focus-visible { border-color: #6346db; outline: 3px solid #b7a7ff; outline-offset: 3px; }"
+    },
+    {
+      "name": "Graphite Glass Navigation",
       "kind": "nav",
-      "refersTo": "nav-link",
-      "description": "Persistent rail item; solid violet fill when active.",
-      "html": "<a class=\"ds-rail-link ds-rail-link--active\" href=\"#\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\"/></svg><span>Assistant</span></a>",
-      "css": ".ds-rail-link { min-height: 42px; display: flex; align-items: center; gap: 11px; padding: 8px 10px; border-radius: 8px; color: #c4c5d3; text-decoration: none; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.88rem; font-weight: 620; transition: background-color 0.16s ease-out, color 0.16s ease-out; } .ds-rail-link:hover { color: #fff; background: #2b2d40; } .ds-rail-link:focus-visible { outline: 3px solid #b7a7ff; outline-offset: 2px; } .ds-rail-link--active { color: #fff; background: #6346db; }"
+      "refersTo": "graphite-menu",
+      "description": "The persistent 244px Ionic split-pane menu and its 44px active links.",
+      "html": "<aside class=\"ds-graphite-menu\"><strong class=\"ds-menu-brand\">Prism</strong><nav><a class=\"ds-menu-link\" href=\"#\">Assistant</a><a class=\"ds-menu-link ds-menu-link-active\" href=\"#\">Model lab</a><a class=\"ds-menu-link\" href=\"#\">Image lab</a></nav><span class=\"ds-authority-chip\">Local authority</span></aside>",
+      "css": ".ds-graphite-menu { width: 244px; min-height: 480px; display: flex; flex-direction: column; gap: 28px; padding: 24px 16px 18px; border-right: 1px solid rgba(255, 255, 255, 0.12); color: #f7f5ff; background: linear-gradient(150deg, rgba(143, 114, 255, 0.1), transparent 32%), rgba(28, 29, 43, 0.7); box-shadow: 18px 0 48px rgba(24, 23, 38, 0.12); -webkit-backdrop-filter: blur(20px) saturate(1.16); backdrop-filter: blur(20px) saturate(1.16); font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; } .ds-menu-brand { padding: 0 6px; font-size: 1.08rem; letter-spacing: -0.02em; } .ds-graphite-menu nav { display: grid; gap: 5px; } .ds-menu-link { min-height: 44px; display: flex; align-items: center; padding: 9px 11px; border: 1px solid transparent; border-radius: 14px; color: #c4c5d3; text-decoration: none; font-size: 0.88rem; font-weight: 620; transition: background 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.2s cubic-bezier(0.32, 0.72, 0, 1); } .ds-menu-link:hover { color: #fff; background: rgba(255, 255, 255, 0.15); transform: translateX(2px); } .ds-menu-link:focus-visible { outline: 3px solid #b7a7ff; outline-offset: 2px; } .ds-menu-link-active { color: #fff; border-color: rgba(255, 255, 255, 0.12); background: rgba(99, 70, 219, 0.94); box-shadow: inset 0 1px rgba(255, 255, 255, 0.13); } .ds-authority-chip { min-height: 30px; display: inline-flex; align-items: center; align-self: flex-start; margin-top: auto; padding: 6px 9px; border: 1px solid rgba(255, 255, 255, 0.11); border-radius: 14px; color: #cfd0df; background: rgba(255, 255, 255, 0.07); font-size: 0.68rem; }"
+    },
+    {
+      "name": "Mobile Menu Trigger",
+      "kind": "button",
+      "description": "The fixed frosted control that opens the native left-overlay menu below 761px.",
+      "html": "<button class=\"ds-mobile-menu\" aria-label=\"Open navigation\"><svg aria-hidden=\"true\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M4 7h16M4 12h16M4 17h16\"/></svg></button>",
+      "css": ".ds-mobile-menu { width: 46px; height: 46px; display: grid; place-items: center; padding: 0; border: 1px solid rgba(255, 255, 255, 0.72); border-radius: 14px; color: #282839; background: rgba(255, 255, 255, 0.62); box-shadow: 0 10px 24px rgba(35, 32, 51, 0.12); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); transition: background 0.2s ease-in-out; } .ds-mobile-menu:hover { background: rgba(255, 255, 255, 0.86); } .ds-mobile-menu:active { background: rgba(255, 255, 255, 0.72); } .ds-mobile-menu:focus-visible { outline: 3px solid #b7a7ff; outline-offset: 3px; }"
     },
     {
       "name": "Workspace Panel",
       "kind": "card",
       "refersTo": "workspace-panel",
-      "description": "The one active-tool surface per screen; the system's only shadow lives here.",
-      "html": "<section class=\"ds-workspace-panel\">Panel content</section>",
-      "css": ".ds-workspace-panel { background: #fff; border: 1px solid #dfe1ea; border-radius: 12px; box-shadow: 0 12px 28px rgba(33,35,52,0.06); padding: 18px; }"
+      "description": "The real task surface: white paper, low lift, and one spectral top seam.",
+      "html": "<section class=\"ds-workspace-panel\"><div class=\"ds-workspace-panel-body\"><strong>Assistant</strong><p>Continue a private workspace conversation.</p></div></section>",
+      "css": ".ds-workspace-panel { position: relative; border: 1px solid #dfe1ea; border-radius: 14px; background: #fff; box-shadow: 0 12px 28px rgba(33, 35, 52, 0.06); color: #171824; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; } .ds-workspace-panel::before { content: ''; position: absolute; z-index: 1; top: 0; right: 14px; left: 14px; height: 1px; background: linear-gradient(90deg, transparent, #8f72ff 32%, #45b7db 58%, #f09fc3 78%, transparent); } .ds-workspace-panel-body { padding: 18px; } .ds-workspace-panel p { margin: 6px 0 0; color: #5d6074; }"
     },
     {
-      "name": "Status Chip (success)",
+      "name": "Success Chip",
       "kind": "chip",
       "refersTo": "chip-status-success",
-      "description": "Explicit-state marker: a model provider reporting available.",
-      "html": "<span class=\"ds-chip ds-chip--success\">available</span>",
-      "css": ".ds-chip { display: inline-flex; align-items: center; height: 24px; padding: 0 8px; border-radius: 999px; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.75rem; font-weight: 600; } .ds-chip--success { background: #16845b; color: #fff; } .ds-chip--outlined { background: transparent; border: 1px solid #dfe1ea; color: #171824; }"
-    },
-    {
-      "name": "Chat Message (user)",
-      "kind": "custom",
-      "refersTo": "chat-bubble-user",
-      "description": "Signature component: the tail-cornered user bubble, asymmetric 12/12/3/12 radius.",
-      "html": "<div class=\"ds-chat-bubble-user\">What's the deadline for this?</div>",
-      "css": ".ds-chat-bubble-user { margin-left: auto; width: fit-content; max-width: min(780px, 86%); padding: 12px 16px; border-radius: 12px 12px 3px 12px; background: #ebe7ff; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; font-size: 1rem; color: #171824; }"
+      "description": "An explicit available/ready state, never a decorative accent.",
+      "html": "<span class=\"ds-success-chip\"><i aria-hidden=\"true\"></i>Available</span>",
+      "css": ".ds-success-chip { min-height: 24px; display: inline-flex; align-items: center; gap: 6px; padding: 0 8px; border-radius: 14px; color: #fff; background: #16845b; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.75rem; font-weight: 600; } .ds-success-chip i { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }"
     },
     {
       "name": "Converter Dropzone",
       "kind": "custom",
-      "refersTo": "converter-drop",
-      "description": "Signature component: the only dashed-border element, standing in for a text input where the material is a file.",
-      "html": "<label class=\"ds-dropzone\" tabindex=\"0\">Drop a workbook or click to browse<input type=\"file\" hidden></label>",
-      "css": ".ds-dropzone { min-height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; padding: 30px; text-align: center; cursor: pointer; background: #fff; border: 1px dashed #dfe1ea; border-radius: 12px; transition: border-color 0.16s ease-out, background-color 0.16s ease-out; } .ds-dropzone:hover { border-color: #6346db; background: #faf9ff; } .ds-dropzone:focus-within { outline: 3px solid #a897ef; outline-offset: 3px; }"
+      "description": "The only dashed material-input surface, used for a local workbook.",
+      "html": "<label class=\"ds-dropzone\" tabindex=\"0\"><svg aria-hidden=\"true\" width=\"30\" height=\"30\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><path d=\"M14 2v6h6M12 18v-6M9 15l3-3 3 3\"/></svg><strong>Choose an Excel workbook</strong><span>Every sheet becomes a key; each row becomes an object.</span><input type=\"file\" hidden /></label>",
+      "css": ".ds-dropzone { min-height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; padding: 30px; border: 1px dashed #dfe1ea; border-radius: 14px; color: #5d6074; background: #fff; text-align: center; cursor: pointer; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; transition: border-color 0.16s ease-out, background 0.16s ease-out; } .ds-dropzone svg { color: #6346db; } .ds-dropzone strong { color: #171824; font-size: 1rem; } .ds-dropzone:hover { border-color: #6346db; background: #faf9ff; } .ds-dropzone:focus-within, .ds-dropzone:focus-visible { outline: 3px solid #b7a7ff; outline-offset: 3px; }"
+    },
+    {
+      "name": "Folding Workspace Plane",
+      "kind": "custom",
+      "description": "The Persuade signature: detached glass context folding behind one complete app volume.",
+      "html": "<div class=\"ds-fold-stage\"><div class=\"ds-fold-context\">Model lab</div><div class=\"ds-fold-window\"><aside>Prism</aside><main><strong>Assistant</strong><span>Private workspace</span></main></div></div>",
+      "css": ".ds-fold-stage { width: 100%; min-height: 300px; position: relative; display: grid; place-items: center; perspective: 1600px; transform-style: preserve-3d; font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; } .ds-fold-context { width: 45%; min-height: 150px; position: absolute; top: 0; right: -7%; padding: 18px; border: 1px solid rgba(255, 255, 255, 0.52); border-radius: 14px; color: #3e3b50; background: rgba(255, 255, 255, 0.48); box-shadow: 0 26px 50px rgba(52, 41, 85, 0.13); -webkit-backdrop-filter: blur(20px) saturate(1.18); backdrop-filter: blur(20px) saturate(1.18); transform: translate3d(26px, -44px, -40px) rotate(7deg); } .ds-fold-window { width: 90%; min-height: 260px; display: grid; grid-template-columns: 142px 1fr; overflow: hidden; position: relative; z-index: 1; border: 1px solid rgba(77, 70, 108, 0.2); border-radius: 14px; background: rgba(255, 255, 255, 0.88); box-shadow: 0 32px 80px rgba(38, 31, 62, 0.2), 0 8px 24px rgba(38, 31, 62, 0.1); transform: translate3d(0, 0, 32px) rotateZ(-1deg); transition: transform 0.22s cubic-bezier(0.32, 0.72, 0, 1); } .ds-fold-window aside { padding: 18px; color: #f8f7ff; background: rgba(30, 31, 45, 0.94); } .ds-fold-window main { display: grid; align-content: start; gap: 6px; padding: 24px; color: #171824; background: #f4f4f8; } .ds-fold-window main span { color: #5d6074; } @media (max-width: 640px) { .ds-fold-context { display: none; } .ds-fold-window { width: 100%; grid-template-columns: 60px 1fr; transform: none; } } @media (prefers-reduced-motion: reduce) { .ds-fold-context, .ds-fold-window { transform: none; transition: none; } }"
     }
   ],
   "narrative": {
-    "northStar": "The Optical Bench",
-    "overview": "Prism reads as an instrument, not a dashboard: a dark graphite rail holds the tool selector at rest, and every chosen tool opens onto a bright paper canvas where a single white workspace panel does the work. Spectral violet is the one indicator light in the system — it marks the active tool, the primary action, and the focus ring, and nowhere else. The product carries direct, technical, task-oriented language (per PRODUCT.md's Brand Commitments) and the built surface matches it: no illustration, no gradients beyond the small brand mark, no marketing voice.\n\nThe build confirms the OWN-WORLD brief exactly — graphite planes (the rail, #202130), bright paper (the canvas, #f3f4f8), spectral violet (#6346db) as the lone accent, crisp 1px rules instead of shadows for most separation, and compact controls (40px buttons, 42px rail links, 0.72–0.88rem labels). Depth is nearly flat: the workspace panel carries the system's only shadow, a soft ambient lift barely visible against the paper. There are no decorative kickers, no hard-offset shadows, and no glyph iconography beyond functional MUI action icons (send, attach, delete) sized to the compact-control scale.",
+    "northStar": "The Folding Optical Bench",
+    "overview": "Prism is one workbench seen at two distances. The unauthenticated Persuade surface presents the recognizable app itself as the offer, then refits that same frame across five real tools; the authenticated Operate surface is the full working instrument. Bright optical paper receives graphite glass navigation, white task surfaces, and spectral light without turning into a generic marketing page or a conventional dashboard.\n\nThe shipped system expands the incumbent Optical Bench rather than replacing it. Spectral Violet still leads interaction, while restrained violet, cyan, and pink refractions now supply atmosphere and a thin signature seam. Ionic's iOS shell and MUI's task workspaces meet at one dominant 14px squircle geometry. Archivo Variable gives only the marketing display layer its broad, tightly tracked voice; all workbench body text and controls remain in the Aptos stack.\n\nDepth is intentionally mode-dependent. Operate stays shallow and legible, using a frosted graphite split pane, hairlines, and one low panel lift. Persuade stages the same workbench with layered glass, diffuse shadows, grain, and bounded pointer/scroll parallax; mobile removes the loose folds, and reduced-motion users receive a still composition.",
     "keyCharacteristics": [
-      "Two structural planes only: dark graphite rail, bright paper canvas, with pure-white workspace panels floating a fraction above the canvas.",
-      "One accent color, reserved for the active/primary state.",
-      "Flat-by-default depth; a single soft shadow, no card lift ladder.",
-      "Crisp 1px hairline rules do most of the separation work shadows would otherwise do.",
-      "A single font family (Aptos/Segoe UI Variable) carries every role from page title to body to labels."
+      "One recognizable workbench volume, presented persuasively before sign-in and used directly after sign-in.",
+      "Bright optical paper against semi-transparent graphite iOS glass.",
+      "Spectral Violet for action and selection; cyan and pink only as restrained refraction.",
+      "A shared 14px squircle language across Ionic controls, MUI controls, navigation, and work surfaces.",
+      "Archivo Variable for Persuade display type only; Aptos for Operate, body copy, labels, and controls.",
+      "Ambient, blurred depth and bounded motion, with explicit reduced-motion and reduced-transparency behavior."
     ],
     "rules": [
-      { "name": "The One Accent Rule", "body": "Spectral Violet appears only on the active/selected/primary-action state — never as a decorative background wash. Its own tinted family (violet-wash, violet-mist, violet-frost, violet-line) exists solely to shade elements already tied to the accent; it never substitutes for Bright Paper as the general canvas color.", "section": "colors" },
-      { "name": "The Single Family Rule", "body": "One font stack serves display, body, and label roles across the whole product; hierarchy is carried by weight, size, and letter-spacing, never by introducing a second face.", "section": "typography" },
-      { "name": "The One Shadow Rule", "body": "There is exactly one shadow value in the system, and it exists to separate the single workspace panel from the canvas beneath it — not to create an elevation ladder. No other element carries a shadow.", "section": "elevation" }
+      {
+        "name": "The Violet Leads Rule",
+        "body": "Spectral Violet owns primary actions, active navigation, and focus. Cyan and pink may only refract as low-opacity atmosphere or a one-pixel spectral seam; they never carry action or status meaning.",
+        "section": "colors"
+      },
+      {
+        "name": "The Mode-Density Rule",
+        "body": "Persuade surfaces may show the full violet/cyan/pink field; Operate surfaces reduce it to edge haze and the panel's top seam so task content remains dominant.",
+        "section": "colors"
+      },
+      {
+        "name": "The Display Boundary Rule",
+        "body": "Archivo Variable is a Persuade-only display face for the marketing wordmark and large headings. Authenticated workspaces, controls, navigation, labels, and body copy stay in the Aptos stack.",
+        "section": "typography"
+      },
+      {
+        "name": "The Functional Label Rule",
+        "body": "Uppercase tracked type identifies content or state; it does not become a decorative eyebrow above headings.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Volume Rule",
+        "body": "On Prism Persuade surfaces, show the recognizable workbench itself and reconfigure that same frame across capabilities; do not replace it with a row of interchangeable feature cards.",
+        "section": "layout"
+      },
+      {
+        "name": "The Depth-by-Mode Rule",
+        "body": "Operate uses only shallow structural lift; Persuade may use deeper blurred shadows to stage the workbench. Both modes use hairlines and translucent material first, and neither uses hard-offset shadow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Fourteen-Pixel Rule",
+        "body": "Use 14px for interactive blocks, app workspaces, cards, and navigation. Smaller radii belong only to nested media, code, identity assets, or the directional chat corner.",
+        "section": "shapes"
+      }
     ],
     "dos": [
-      "Do keep Spectral Violet to a single role per screen: the active nav item, the one primary action, and focus rings.",
-      "Do use 1px hairline rules (Rule Gray on paper, Graphite Line on graphite) as the default way to separate regions.",
-      "Do give every focusable control the shared 3px Violet Focus outline — it is the accessibility contract, not a decorative flourish.",
-      "Do let a control's enabled/disabled or color state be the explicit-state signal the STORY calls for, instead of adding separate status text.",
-      "Do hold buttons, chips, and result tiles flat; reserve the one ambient shadow for the workspace panel only."
+      "Do let Spectral Violet lead every interactive hierarchy while cyan and pink stay in low-opacity refraction or the one-pixel workspace seam.",
+      "Do use 14px radii across Ionic and MUI controls, navigation, cards, and work surfaces.",
+      "Do keep Archivo Variable inside Persuade display roles and keep Aptos across authenticated work, body copy, labels, and controls.",
+      "Do preserve the persistent 244px desktop split pane and the native left-overlay menu below 761px.",
+      "Do keep parallax bounded, hardware-accelerated, and absent under `prefers-reduced-motion`.",
+      "Do keep the shared 3px Violet Focus outline visible on every keyboard-operable control."
     ],
     "donts": [
-      "Don't add a second shadow value or stack shadows on top of borders; the system has exactly one shadow and it belongs to the workspace panel.",
-      "Don't introduce uppercase kicker/eyebrow labels above page or section titles — the only uppercase small-caps text in the product is the functional per-message sender label inside chat, and it does not generalize to other headings.",
-      "Don't use hard-offset (non-blurred) shadows or thick neobrutalist borders; Prism's world is soft-shadow-and-hairline, not that one.",
-      "Don't introduce a second typeface for emphasis or display text; hierarchy comes from weight/size/letter-spacing within the single Aptos/Segoe UI Variable stack.",
-      "Don't reuse the brand mark's rotated color bars as a general decorative motif; it is confined to the one brand lockup instance."
+      "Don't promote cyan or pink to buttons, links, selected states, or semantic status colors.",
+      "Don't move Archivo into MUI task workspaces or use it for dense body copy.",
+      "Don't turn the mobile workbench navigation into a bottom tab bar; the shipped behavior is a frosted left overlay.",
+      "Don't use hard-offset shadows, thick neobrutalist borders, or equal elevation on every card.",
+      "Don't replace the Persuade workbench volume with generic feature-card rows.",
+      "Don't introduce decorative kicker/eyebrow labels; tracked uppercase remains functional content identity."
     ]
   }
 }

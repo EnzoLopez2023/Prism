@@ -15,7 +15,7 @@ const theme = createTheme({
     success: { main: '#16845b' },
     warning: { main: '#a65f00' },
   },
-  shape: { borderRadius: 10 },
+  shape: { borderRadius: 14 },
   typography: {
     fontFamily: '"Aptos", "Segoe UI Variable", "Segoe UI", system-ui, sans-serif',
     h1: { fontSize: '1.8rem', fontWeight: 720, letterSpacing: '-0.03em' },
@@ -23,8 +23,12 @@ const theme = createTheme({
     button: { textTransform: 'none', fontWeight: 680 },
   },
   components: {
-    MuiButton: { styleOverrides: { root: { minHeight: 40, boxShadow: 'none' } } },
-    MuiPaper: { styleOverrides: { root: { backgroundImage: 'none' } } },
+    MuiButton: { styleOverrides: { root: { minHeight: 40, borderRadius: 14, boxShadow: 'none' } } },
+    MuiCard: { styleOverrides: { root: { borderRadius: 14 } } },
+    MuiChip: { styleOverrides: { root: { borderRadius: 14 } } },
+    MuiIconButton: { styleOverrides: { root: { borderRadius: 14 } } },
+    MuiOutlinedInput: { styleOverrides: { root: { borderRadius: 14 } } },
+    MuiPaper: { styleOverrides: { root: { borderRadius: 14, backgroundImage: 'none' } } },
   },
 })
 

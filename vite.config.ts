@@ -13,6 +13,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           react: ['react', 'react-dom', 'react-router-dom'],
+          ionic: ['@ionic/react', 'ionicons'],
           mui: ['@mui/material', '@mui/icons-material', '@emotion/react', '@emotion/styled'],
           auth: ['@azure/msal-browser', '@azure/msal-react'],
           markdown: ['react-markdown'],
