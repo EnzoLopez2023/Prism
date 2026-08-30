@@ -17,6 +17,13 @@ Multi-stage Dockerfile:
 1. **Build stage**: `node:24-slim`, `npm ci`, typecheck + Vite build + server compile
 2. **Runtime stage**: `node:24-slim`, non-root `prism` user, `dumb-init` for signal forwarding
 
+The server handles `SIGTERM`/`SIGINT`, stops accepting requests, and releases
+its database operation claim before exiting. If active connections do not drain,
+it force-closes them after three seconds so cleanup completes within App
+Service's five-second container termination window. Abrupt termination that
+cannot run process cleanup still requires the evidence-preserving claim recovery
+workflow documented in [migration and recovery](migration-and-recovery.md).
+
 ## Required GitHub Secrets & Variables
 
 ### Repository Variables (`vars.*`)

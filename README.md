@@ -34,7 +34,10 @@ set. Explicit development auth always binds the API to `127.0.0.1`.
 The app, importer, and restore command share an atomic
 `<database>.operation.claim`. Claims are never auto-stolen across hosts.
 Interrupted claims require the documented token-bound `npm run claim:recover`
-operator workflow and archived evidence.
+operator workflow and archived evidence. The server releases its runtime claim
+on startup failures, startup signals, process exit, graceful shutdown, and the
+bounded forced shutdown used within Azure App Service's container termination
+window.
 
 LM Studio has no default endpoint. Set `LMSTUDIO_ENDPOINT` explicitly. HTTPS
 and loopback HTTP endpoints are accepted; any other plaintext HTTP endpoint is

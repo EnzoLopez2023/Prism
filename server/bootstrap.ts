@@ -9,10 +9,62 @@ import { HttpContractClient, HttpMarqueeClient, ownedAppValidator } from './clie
 import { AzureManagedIdentityTokenProvider, UnavailableTokenProvider } from './clients/workloadToken.js'
 import { loadConfig } from './config.js'
 import { acquireExclusiveClaim } from '../lib/concurrency/exclusiveClaim.js'
+import { createShutdownHandler } from './shutdown.js'
 
 const config = loadConfig()
 const operationClaim = acquireExclusiveClaim(config.operationClaimPath, 'Prism application runtime', { host: config.host, environment: config.environment })
+const resources: {
+  database: ReturnType<typeof openDatabase> | undefined
+  server: ReturnType<typeof createServer> | undefined
+  databaseClosed: boolean
+  claimReleased: boolean
+} = {
+  database: undefined,
+  server: undefined,
+  databaseClosed: false,
+  claimReleased: false,
+}
+
+function releaseResources() {
+  const errors: unknown[] = []
+  if (resources.database && !resources.databaseClosed) {
+    try {
+      resources.database.close()
+      resources.databaseClosed = true
+    } catch (error) {
+      errors.push(error)
+    }
+  }
+  if (!resources.claimReleased) {
+    try {
+      operationClaim.release()
+      resources.claimReleased = true
+    } catch (error) {
+      errors.push(error)
+    }
+  }
+  if (errors.length === 1) throw errors[0]
+  if (errors.length > 1) throw new AggregateError(errors, 'Prism resource cleanup failed')
+}
+
+process.once('exit', () => {
+  try {
+    releaseResources()
+  } catch (error) {
+    console.error('prism_exit_cleanup_failed', error)
+  }
+})
+
+const shutdown = createShutdownHandler({
+  getServer: () => resources.server,
+  releaseResources,
+  timeoutMs: 3_000,
+})
+process.once('SIGTERM', () => shutdown('SIGTERM'))
+process.once('SIGINT', () => shutdown('SIGINT'))
+
 const db = openDatabase(config.dbPath)
+resources.database = db
 migrate(db)
 const repository = new PrismRepository(db, new FilesystemArtifactStore(config.artifactRoot))
 const resumedDeletions = await repository.resumePendingConversationDeletions()
@@ -25,12 +77,5 @@ const clients = {
   marquee: new HttpMarqueeClient(process.env.MARQUEE_BASE_URL, process.env.MARQUEE_AUDIENCE, tokens),
 }
 const server = createServer(createApp(config, repository, clients))
+resources.server = server
 server.listen(config.port, config.host, () => console.log(`prism_listening host=${config.host} port=${config.port}`))
-
-function shutdown(signal: string) {
-  console.log(`prism_shutdown signal=${signal}`)
-  server.close(() => { db.close(); operationClaim.release(); process.exit(0) })
-  setTimeout(() => process.exit(1), 10_000).unref()
-}
-process.once('SIGTERM', () => shutdown('SIGTERM'))
-process.once('SIGINT', () => shutdown('SIGINT'))
