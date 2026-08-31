@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-30T14:58:58.536Z",
+  "generatedAt": "2026-08-31T22:46:38.377Z",
   "title": "Design System: Prism",
   "extensions": {
     "colorMeta": {
@@ -199,8 +199,8 @@
       },
       {
         "name": "graphite-menu-separation",
-        "value": "18px 0 48px rgba(24, 23, 38, 0.12)",
-        "purpose": "Separates the frosted split pane from the paper canvas."
+        "value": "0 12px 32px -14px rgba(24, 23, 38, 0.28), 0 4px 10px -6px rgba(24, 23, 38, 0.16)",
+        "purpose": "Separates the inset frosted split pane from the paper canvas with ambient and contact depth."
       },
       {
         "name": "marketing-primary-lift",
@@ -304,9 +304,9 @@
       "name": "Graphite Glass Navigation",
       "kind": "nav",
       "refersTo": "graphite-menu",
-      "description": "The persistent 244px Ionic split-pane menu and its 44px active links.",
+      "description": "The persistent 244px Ionic split-pane menu, floating inside a 14px gutter, and its 44px active links.",
       "html": "<aside class=\"ds-graphite-menu\"><strong class=\"ds-menu-brand\">Prism</strong><nav><a class=\"ds-menu-link\" href=\"#\">Assistant</a><a class=\"ds-menu-link ds-menu-link-active\" href=\"#\">Model lab</a><a class=\"ds-menu-link\" href=\"#\">Image lab</a></nav><span class=\"ds-authority-chip\">Local authority</span></aside>",
-      "css": ".ds-graphite-menu { width: 244px; min-height: 480px; display: flex; flex-direction: column; gap: 28px; padding: 24px 16px 18px; border-right: 1px solid rgba(255, 255, 255, 0.12); color: #f7f5ff; background: linear-gradient(150deg, rgba(143, 114, 255, 0.1), transparent 32%), rgba(28, 29, 43, 0.7); box-shadow: 18px 0 48px rgba(24, 23, 38, 0.12); -webkit-backdrop-filter: blur(20px) saturate(1.16); backdrop-filter: blur(20px) saturate(1.16); font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; } .ds-menu-brand { padding: 0 6px; font-size: 1.08rem; letter-spacing: -0.02em; } .ds-graphite-menu nav { display: grid; gap: 5px; } .ds-menu-link { min-height: 44px; display: flex; align-items: center; padding: 9px 11px; border: 1px solid transparent; border-radius: 14px; color: #c4c5d3; text-decoration: none; font-size: 0.88rem; font-weight: 620; transition: background 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.2s cubic-bezier(0.32, 0.72, 0, 1); } .ds-menu-link:hover { color: #fff; background: rgba(255, 255, 255, 0.15); transform: translateX(2px); } .ds-menu-link:focus-visible { outline: 3px solid #b7a7ff; outline-offset: 2px; } .ds-menu-link-active { color: #fff; border-color: rgba(255, 255, 255, 0.12); background: rgba(99, 70, 219, 0.94); box-shadow: inset 0 1px rgba(255, 255, 255, 0.13); } .ds-authority-chip { min-height: 30px; display: inline-flex; align-items: center; align-self: flex-start; margin-top: auto; padding: 6px 9px; border: 1px solid rgba(255, 255, 255, 0.11); border-radius: 14px; color: #cfd0df; background: rgba(255, 255, 255, 0.07); font-size: 0.68rem; }"
+      "css": ".ds-graphite-menu { width: 244px; min-height: 480px; display: flex; flex-direction: column; gap: 28px; padding: 24px 16px 18px; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; color: #f7f5ff; background: linear-gradient(150deg, rgba(143, 114, 255, 0.1), transparent 32%), rgba(28, 29, 43, 0.7); box-shadow: inset 0 1px rgba(255, 255, 255, 0.12), 0 12px 32px -14px rgba(24, 23, 38, 0.28), 0 4px 10px -6px rgba(24, 23, 38, 0.16); -webkit-backdrop-filter: blur(20px) saturate(1.16); backdrop-filter: blur(20px) saturate(1.16); font-family: Aptos, 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif; } .ds-menu-brand { padding: 0 6px; font-size: 1.08rem; letter-spacing: -0.02em; } .ds-graphite-menu nav { display: grid; gap: 5px; } .ds-menu-link { min-height: 44px; display: flex; align-items: center; padding: 9px 11px; border: 1px solid transparent; border-radius: 14px; color: #c4c5d3; text-decoration: none; font-size: 0.88rem; font-weight: 620; transition: background 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.2s cubic-bezier(0.32, 0.72, 0, 1); } .ds-menu-link:hover { color: #fff; background: rgba(255, 255, 255, 0.15); transform: translateX(2px); } .ds-menu-link:focus-visible { outline: 3px solid #b7a7ff; outline-offset: 2px; } .ds-menu-link-active { color: #fff; border-color: rgba(255, 255, 255, 0.12); background: rgba(99, 70, 219, 0.94); box-shadow: inset 0 1px rgba(255, 255, 255, 0.13); } .ds-authority-chip { min-height: 30px; display: inline-flex; align-items: center; align-self: flex-start; margin-top: auto; padding: 6px 9px; border: 1px solid rgba(255, 255, 255, 0.11); border-radius: 14px; color: #cfd0df; background: rgba(255, 255, 255, 0.07); font-size: 0.68rem; }"
     },
     {
       "name": "Mobile Menu Trigger",
@@ -398,7 +398,7 @@
       "Do let Spectral Violet lead every interactive hierarchy while cyan and pink stay in low-opacity refraction or the one-pixel workspace seam.",
       "Do use 14px radii across Ionic and MUI controls, navigation, cards, and work surfaces.",
       "Do keep Archivo Variable inside Persuade display roles and keep Aptos across authenticated work, body copy, labels, and controls.",
-      "Do preserve the persistent 244px desktop split pane and the native left-overlay menu below 761px.",
+      "Do preserve the persistent 244px desktop menu, its 14px floating gutter, and the native left-overlay menu below 761px.",
       "Do keep parallax bounded, hardware-accelerated, and absent under `prefers-reduced-motion`.",
       "Do keep the shared 3px Violet Focus outline visible on every keyboard-operable control."
     ],

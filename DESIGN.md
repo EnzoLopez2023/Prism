@@ -130,6 +130,8 @@ components:
     backgroundColor: "{colors.graphite-glass}"
     textColor: "{colors.rail-text}"
     width: "244px"
+    inset: "14px"
+    rounded: "{rounded.squircle}"
   chip-status-success:
     backgroundColor: "{colors.confirm-green}"
     textColor: "{colors.pure-paper}"
@@ -223,7 +225,7 @@ Persuade begins with a sticky 72px glass navigation and a centered hero capped a
 
 At 920px the landing hero and workflow stage stack, center navigation disappears, and the workspace remains the visual proof. At 640px the primary action becomes full-width, loose fold cards and floating labels disappear, the mock sidebar compresses to icons, proof items stack, and workflow selectors become a horizontal snap strip. Macro marketing spacing is fluid (`clamp()` ranges from 70–164px); component spacing still resolves to the shared 4/8/14/18/24/28/36px rhythm.
 
-Operate uses an Ionic `IonSplitPane` with a persistent 244px menu at 761px and above. The main column centers a page shell at `min(1440px, 100%)` with 36px/40px/64px top/side/bottom padding. Below 761px the split pane becomes Ionic's native overlay menu, sized to `min(86vw, 310px)`, opened by a fixed 46px frosted control; the page shell reserves 80px plus the safe-area inset above content. It does not become a bottom tab bar.
+Operate uses an Ionic `IonSplitPane` with a persistent 244px menu inset by 14px inside a 272px desktop rail reserve at 761px and above. The main column centers a page shell at `min(1440px, 100%)` with 36px/40px/64px top/side/bottom padding. Below 761px the split pane becomes Ionic's native overlay menu, sized to `min(86vw, 310px)`, opened by a fixed 46px frosted control; the page shell reserves 80px plus the safe-area inset above content. It does not become a bottom tab bar.
 
 Authenticated model results use two columns; image results use three, then two below 1080px. Both collapse to one column below 761px, as do action rows and source-image forms. Page headings stack, prompt rows simplify, and full-width primary actions preserve a usable mobile task flow.
 
@@ -236,7 +238,7 @@ Prism uses a hybrid depth system. Operate relies on translucent planes, 1px rule
 
 ### Shadow Vocabulary
 - **Workspace Panel Lift** (`0 12px 28px rgba(33, 35, 52, 0.06)`): the restrained lift under the real task workspace.
-- **Graphite Menu Separation** (`18px 0 48px rgba(24, 23, 38, 0.12)`): separates the frosted split pane from the paper canvas.
+- **Graphite Menu Separation** (`0 12px 32px -14px rgba(24, 23, 38, 0.28), 0 4px 10px -6px rgba(24, 23, 38, 0.16)`): separates the inset frosted split pane from the paper canvas with ambient and contact depth.
 - **Marketing Primary Lift** (`0 14px 28px rgba(73, 48, 181, 0.25), inset 0 1px rgba(255, 255, 255, 0.2)`): gives the 52px Microsoft action a tactile Persuade emphasis; hover increases the diffuse lift.
 - **Folding Workspace Lift** (`0 32px 80px rgba(38, 31, 62, 0.2), 0 8px 24px rgba(38, 31, 62, 0.1)`): holds the full illustrative app window above the optical field.
 - **Floating Glass Lift** (`0 12px 30px rgba(47, 38, 81, 0.13)`): confined to the hero's small floating state labels.
@@ -278,8 +280,8 @@ Smaller radii are subordinate: 11–12px frames identity assets and nested navig
 - **Material Input:** the converter's large dashed drop zone is the only alternate field silhouette; hover shifts its border to Violet and its surface to Violet Frost.
 
 ### Navigation
-- **Authenticated Desktop:** a persistent 244px semi-transparent graphite `IonMenu` inside `IonSplitPane`, with 20px blur. Links are 44px high, 14px radius, Rail Muted at rest, white over translucent paper on hover, and near-solid Violet when active.
-- **Authenticated Mobile:** below 761px the same menu becomes a left overlay (`min(86vw, 310px)`) with a fixed 46px frosted trigger. Menu selection closes the overlay through Ionic's native toggle behavior.
+- **Authenticated Desktop:** a persistent 244px semi-transparent graphite `IonMenu` floats inside a 14px `IonSplitPane` gutter, with a 14px radius, 20px blur, translucent hairline, and Graphite Menu Separation shadow. Links are 44px high, 14px radius, Rail Muted at rest, white over translucent paper on hover, and near-solid Violet when active.
+- **Authenticated Mobile:** below 761px the same menu becomes a left overlay (`min(86vw, 310px)`) with rounded trailing corners and a fixed 46px frosted trigger. Menu selection closes the overlay through Ionic's native toggle behavior.
 - **Marketing:** a sticky 72px paper-glass bar keeps the identity left and sign-in right. Center anchors disappear below 920px; below 640px, secondary brand copy and the action label hide while the marks remain.
 
 ### Folding Workspace Stage
@@ -296,7 +298,7 @@ The shipped `/apple-touch-icon.png` is the sole Prism identity asset in marketin
 - **Do** let Spectral Violet lead every interactive hierarchy while cyan and pink stay in low-opacity refraction or the one-pixel workspace seam.
 - **Do** use 14px radii across Ionic and MUI controls, navigation, cards, and work surfaces.
 - **Do** keep Archivo Variable inside Persuade display roles and keep Aptos across authenticated work, body copy, labels, and controls.
-- **Do** preserve the persistent 244px desktop split pane and the native left-overlay menu below 761px.
+- **Do** preserve the persistent 244px desktop menu, its 14px floating gutter, and the native left-overlay menu below 761px.
 - **Do** keep parallax bounded, hardware-accelerated, and absent under `prefers-reduced-motion`.
 - **Do** keep the shared 3px Violet Focus outline visible on every keyboard-operable control.
 

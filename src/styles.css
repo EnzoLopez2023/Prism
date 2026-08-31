@@ -27,9 +27,11 @@ ion-item,
 .app-frame {
   min-height: 100dvh;
   --border: 0;
-  --side-max-width: 244px;
-  --side-min-width: 244px;
-  --side-width: 244px;
+  --app-menu-width: 244px;
+  --app-menu-gutter: 14px;
+  --side-max-width: calc(var(--app-menu-width) + var(--app-menu-gutter) + var(--app-menu-gutter));
+  --side-min-width: calc(var(--app-menu-width) + var(--app-menu-gutter) + var(--app-menu-gutter));
+  --side-width: calc(var(--app-menu-width) + var(--app-menu-gutter) + var(--app-menu-gutter));
   background:
     radial-gradient(circle at 2% 10%, rgba(143, 114, 255, .24), transparent 20%),
     radial-gradient(circle at 8% 58%, rgba(69, 183, 219, .15), transparent 25%),
@@ -37,19 +39,29 @@ ion-item,
     #f3f4f8;
 }
 .app-menu {
-  --max-width: 244px;
-  --min-width: 244px;
-  --width: 244px;
+  --max-width: var(--app-menu-width);
+  --min-width: var(--app-menu-width);
+  --width: var(--app-menu-width);
 }
 .app-menu::part(container) {
-  border-right: 1px solid rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .12);
   background:
     linear-gradient(150deg, rgba(143, 114, 255, .1), transparent 32%),
     rgba(28, 29, 43, .7);
-  box-shadow: 18px 0 48px rgba(24, 23, 38, .12);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, .12),
+    0 12px 32px -14px rgba(24, 23, 38, .28),
+    0 4px 10px -6px rgba(24, 23, 38, .16);
   -webkit-backdrop-filter: blur(20px) saturate(1.16);
   backdrop-filter: blur(20px) saturate(1.16);
   transform: translate3d(0, 0, 0);
+}
+@media (min-width: 761px) {
+  .app-menu::part(container) {
+    height: auto;
+    margin: var(--app-menu-gutter);
+    border-radius: 14px;
+  }
 }
 .app-rail { --background: transparent; --color: #f7f5ff; }
 .rail-inner { min-height: 100%; position: relative; display: flex; flex-direction: column; gap: 28px; padding: calc(24px + env(safe-area-inset-top)) 16px calc(18px + env(safe-area-inset-bottom)); }
@@ -182,6 +194,7 @@ ion-item,
 @media (max-width: 760px) {
   .app-frame { --side-max-width: min(86vw, 310px); --side-min-width: min(86vw, 310px); --side-width: min(86vw, 310px); }
   .app-menu { --max-width: min(86vw, 310px); --min-width: min(86vw, 310px); --width: min(86vw, 310px); }
+  .app-menu::part(container) { border-radius: 0 14px 14px 0; }
   .mobile-menu-trigger {
     width: 46px;
     height: 46px;
