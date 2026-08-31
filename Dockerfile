@@ -4,6 +4,7 @@
 FROM node:24-slim AS build
 
 ARG PRISM_BUILD_VERSION=0.0.0-docker
+ARG PRISM_BUILD_NUMBER=local
 ARG PRISM_BUILD_COMMIT=unknown
 ARG PRISM_BUILD_TIME
 
@@ -18,6 +19,7 @@ RUN npm ci
 # Copy source and build
 COPY . .
 ENV PRISM_BUILD_VERSION=${PRISM_BUILD_VERSION} \
+    PRISM_BUILD_NUMBER=${PRISM_BUILD_NUMBER} \
     PRISM_BUILD_COMMIT=${PRISM_BUILD_COMMIT} \
     PRISM_BUILD_TIME=${PRISM_BUILD_TIME}
 RUN npm run build
@@ -36,6 +38,7 @@ RUN groupadd --gid 1001 prism && useradd --uid 1001 --gid prism --shell /bin/fal
 
 # Re-declare build ARGs so they carry into this stage
 ARG PRISM_BUILD_VERSION
+ARG PRISM_BUILD_NUMBER
 ARG PRISM_BUILD_COMMIT
 ARG PRISM_BUILD_TIME
 
@@ -52,6 +55,7 @@ RUN mkdir -p /home/data && chown prism:prism /home/data
 
 # Build identity environment (baked at build time, overridable)
 ENV PRISM_BUILD_VERSION=${PRISM_BUILD_VERSION} \
+    PRISM_BUILD_NUMBER=${PRISM_BUILD_NUMBER} \
     PRISM_BUILD_COMMIT=${PRISM_BUILD_COMMIT} \
     PRISM_BUILD_TIME=${PRISM_BUILD_TIME} \
     NODE_ENV=production \

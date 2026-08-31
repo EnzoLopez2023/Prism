@@ -55,6 +55,7 @@ jobs:
         run: |
           docker build \
             --build-arg PRISM_BUILD_VERSION=${{ github.sha }} \
+            --build-arg PRISM_BUILD_NUMBER=${{ github.run_number }} \
             --build-arg PRISM_BUILD_COMMIT=${{ github.sha }} \
             --build-arg "PRISM_BUILD_TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
             -t prism:ci-${{ github.sha }} .
@@ -109,6 +110,7 @@ jobs:
         run: |
           docker build \
             --build-arg PRISM_BUILD_VERSION=${{ github.sha }} \
+            --build-arg PRISM_BUILD_NUMBER=${{ github.run_number }} \
             --build-arg PRISM_BUILD_COMMIT=${{ github.sha }} \
             --build-arg "PRISM_BUILD_TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
             -t ${{ steps.meta.outputs.tag }} .

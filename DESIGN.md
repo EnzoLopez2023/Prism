@@ -266,7 +266,7 @@ Smaller radii are subordinate: 11–12px frames identity assets and nested navig
 
 ### Chips
 - **Style:** authenticated chips inherit the 14px shape; filled chips carry explicit values, outlined chips carry secondary metadata.
-- **State:** Confirm Green is reserved for real available/ready state. The translucent 30px authority chip sits at the bottom of the graphite rail; it is informational, not an action.
+- **State:** Confirm Green is reserved for real available/ready state.
 
 ### Cards / Containers
 - **Operate Workspace:** Pure Paper, 14px radius, 1px Rule Gray border, Workspace Panel Lift, and the signature one-pixel spectral top seam.
@@ -280,8 +280,8 @@ Smaller radii are subordinate: 11–12px frames identity assets and nested navig
 - **Material Input:** the converter's large dashed drop zone is the only alternate field silhouette; hover shifts its border to Violet and its surface to Violet Frost.
 
 ### Navigation
-- **Authenticated Desktop:** a persistent 244px semi-transparent graphite `IonMenu` floats inside a 14px `IonSplitPane` gutter, with a 14px radius, 20px blur, translucent hairline, and Graphite Menu Separation shadow. Links are 44px high, 14px radius, Rail Muted at rest, white over translucent paper on hover, and near-solid Violet when active.
-- **Authenticated Mobile:** below 761px the same menu becomes a left overlay (`min(86vw, 310px)`) with rounded trailing corners and a fixed 46px frosted trigger. Menu selection closes the overlay through Ionic's native toggle behavior.
+- **Authenticated Desktop:** a persistent 244px semi-transparent graphite `IonMenu` floats inside a 14px `IonSplitPane` gutter, with a 14px radius, 20px blur, translucent hairline, and Graphite Menu Separation shadow. Links are 44px high, 14px radius, Rail Muted at rest, white over translucent paper on hover, and near-solid Violet when active. A hairline-separated footer keeps the signed-in identity, build number, and explicit logout action visible in normal flow.
+- **Authenticated Mobile:** below 761px the same menu becomes a left overlay (`min(86vw, 310px)`) with rounded trailing corners and a fixed 46px frosted trigger. Menu selection closes the overlay through Ionic's native toggle behavior, while the same account footer remains available at the end of the drawer.
 - **Marketing:** a sticky 72px paper-glass bar keeps the identity left and sign-in right. Center anchors disappear below 920px; below 640px, secondary brand copy and the action label hide while the marks remain.
 
 ### Folding Workspace Stage

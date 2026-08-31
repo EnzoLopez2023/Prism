@@ -86,6 +86,7 @@ test('/api/version returns build identity', async () => {
   assert.equal(res.body.app, buildIdentity.app)
   assert.equal(res.body.schema, buildIdentity.schema)
   assert.ok(res.body.version)
+  assert.ok(res.body.build)
   assert.ok(res.body.commit)
 })
 
