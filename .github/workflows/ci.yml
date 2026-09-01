@@ -26,6 +26,9 @@ jobs:
 
       - run: npm ci
 
+      - name: App icon gate
+        run: npm run icons:check
+
       - name: Typecheck
         run: npm run typecheck
 
