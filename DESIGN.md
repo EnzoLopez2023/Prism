@@ -290,7 +290,7 @@ The Persuade signature is a complete Prism app window, not a decorative card. It
 
 ### Brand Asset
 
-The shipped `/apple-touch-icon.png` is the sole Prism identity asset in marketing, illustrative workspace, and authenticated rail lockups. It may scale from 18–68px with an 11–18px clip and soft ambient lift; its internal geometry is not a reusable decoration.
+The shipped `/prism-icon-1024.png` is the canonical Prism identity artwork. `/apple-touch-icon.png` and `/favicon.ico` are deterministic derivatives generated from it; marketing, illustrative workspace, and authenticated rail lockups use the Apple-touch derivative. It may scale from 18–68px with an 11–18px clip and soft ambient lift; its internal geometry is not a reusable decoration.
 
 ## Do's and Don'ts
 
