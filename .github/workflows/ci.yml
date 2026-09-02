@@ -1,3 +1,5 @@
+# deployment-diagnostics-v1 foundation:
+# https://github.com/EnzoLopez2023/azure-infra/tree/f45790e9df7c9fabbc53dd04e6055a59d6f28f39/deployment-diagnostics
 name: CI
 
 on:
@@ -12,6 +14,7 @@ permissions:
 
 env:
   IMAGE_NAME: prism
+  DIAGNOSTIC_RECORDS: deployment-diagnostics/records.jsonl
 
 jobs:
   validate:
@@ -44,9 +47,59 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Audit (production)
-        run: npm audit --omit=dev --audit-level=high
+      - name: Dependency audit diagnostic
+        uses: ./.github/actions/deployment-diagnostic
+        with:
+          check-id: source-dependency-audit
+          category: source-audit
+          phase: pre-build
+          report: deployment-diagnostics/reports/npm-audit.json
+          report-format: npm-audit-json
+          records: ${{ env.DIAGNOSTIC_RECORDS }}
+          run: >-
+            mkdir -p deployment-diagnostics/reports &&
+            npm audit --omit=dev --audit-level=high --json
+            > deployment-diagnostics/reports/npm-audit.json
+
+      - name: Source SBOM diagnostic
+        uses: ./.github/actions/deployment-diagnostic
+        with:
+          check-id: source-sbom
+          category: sbom
+          phase: pre-build
+          report: deployment-diagnostics/reports/source-sbom.cdx.json
+          report-format: cyclonedx-json
+          records: ${{ env.DIAGNOSTIC_RECORDS }}
+          run: >-
+            mkdir -p deployment-diagnostics/reports &&
+            npm sbom --sbom-format cyclonedx
+            > deployment-diagnostics/reports/source-sbom.cdx.json
+
+      - name: Aggregate validation diagnostics
+        if: always()
+        uses: ./.github/actions/deployment-diagnostic
+        with:
+          check-id: aggregate
+          category: nested-checker
+          phase: pre-build
+          mode: aggregate
+          records: ${{ env.DIAGNOSTIC_RECORDS }}
+
+      - name: Upload validation diagnostic evidence
+        id: upload_validate_diagnostics
+        if: always()
         continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-diagnostics-${{ github.run_id }}-${{ github.run_attempt }}-validate
+          path: deployment-diagnostics/
+          retention-days: 30
+
+      - name: Warn if validation diagnostic upload failed
+        if: always() && steps.upload_validate_diagnostics.outcome == 'failure'
+        run: >-
+          echo "::warning title=Deployment diagnostics upload::Validation diagnostic evidence could not be uploaded;
+          diagnostics remain non-blocking, but this run requires log-based review."
 
   docker:
     needs: validate
@@ -122,22 +175,134 @@ jobs:
           echo "digest=$DIGEST" >> "$GITHUB_OUTPUT"
 
       - name: Generate SBOM
+        id: image_sbom
+        continue-on-error: true
         uses: anchore/sbom-action@v0
         with:
-          image: ${{ steps.meta.outputs.tag }}
+          image: ${{ vars.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}@${{ steps.push.outputs.digest }}
           format: spdx-json
           output-file: sbom.spdx.json
 
+      - name: Record exact-image SBOM diagnostic
+        if: always()
+        uses: ./.github/actions/deployment-diagnostic
+        env:
+          DIAGNOSTIC_CANDIDATE_DIGEST: ${{ steps.push.outputs.digest }}
+        with:
+          check-id: image-sbom
+          category: sbom
+          phase: pre-activation
+          mode: record
+          exit-code: ${{ steps.image_sbom.outcome == 'success' && '0' || '1' }}
+          report: sbom.spdx.json
+          report-format: spdx-json
+          records: ${{ env.DIAGNOSTIC_RECORDS }}
+
+      - name: Scan exact image for HIGH and CRITICAL vulnerabilities
+        id: image_scan
+        continue-on-error: true
+        uses: aquasecurity/trivy-action@18f2510ee396bbf400402947b394f2dd8c87dbb0 # v0.29.0
+        with:
+          image-ref: ${{ vars.ACR_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}@${{ steps.push.outputs.digest }}
+          format: json
+          output: trivy.json
+          severity: HIGH,CRITICAL
+          exit-code: '0'
+
+      - name: Record image vulnerability diagnostic
+        if: always()
+        uses: ./.github/actions/deployment-diagnostic
+        env:
+          DIAGNOSTIC_CANDIDATE_DIGEST: ${{ steps.push.outputs.digest }}
+        with:
+          check-id: image-vulnerability-scan
+          category: image-scan
+          phase: pre-activation
+          mode: record
+          exit-code: ${{ steps.image_scan.outcome == 'success' && '0' || '1' }}
+          report: trivy.json
+          report-format: trivy-json
+          records: ${{ env.DIAGNOSTIC_RECORDS }}
+
       - name: Upload SBOM
+        id: upload_sbom
+        if: always()
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: sbom
           path: sbom.spdx.json
 
+      - name: Warn if SBOM upload failed
+        if: always() && steps.upload_sbom.outcome == 'failure'
+        run: >-
+          echo "::warning title=SBOM upload::The existing SBOM artifact could not be uploaded;
+          image diagnostics remain non-blocking, but this run requires log-based review."
+
+      - name: Annotate absent signing prerequisites
+        run: |
+          echo "::warning title=Deployment diagnostics: signature-verification (skipped-no-prerequisite)::Prism's candidate image is not signed by the current workflow; verification is recorded as skipped and does not block deployment."
+          echo "::warning title=Deployment diagnostics: provenance-attestation-verification (skipped-no-prerequisite)::The current workflow attaches no provenance or SBOM attestation; verification is recorded as skipped and does not block deployment."
+
+      - name: Record absent signature prerequisite
+        uses: ./.github/actions/deployment-diagnostic
+        env:
+          DIAGNOSTIC_CANDIDATE_DIGEST: ${{ steps.push.outputs.digest }}
+        with:
+          check-id: signature-verification
+          category: signature-provenance
+          phase: pre-activation
+          mode: skip
+          reason: Candidate signing is not performed by Prism's current build-and-push operation.
+          records: ${{ env.DIAGNOSTIC_RECORDS }}
+
+      - name: Record absent attestation prerequisite
+        uses: ./.github/actions/deployment-diagnostic
+        env:
+          DIAGNOSTIC_CANDIDATE_DIGEST: ${{ steps.push.outputs.digest }}
+        with:
+          check-id: provenance-attestation-verification
+          category: signature-provenance
+          phase: pre-activation
+          mode: skip
+          reason: Prism's current build-and-push operation attaches no provenance or SBOM attestations.
+          records: ${{ env.DIAGNOSTIC_RECORDS }}
+
+      - name: Aggregate image diagnostics
+        if: always()
+        uses: ./.github/actions/deployment-diagnostic
+        with:
+          check-id: aggregate
+          category: nested-checker
+          phase: pre-activation
+          mode: aggregate
+          records: ${{ env.DIAGNOSTIC_RECORDS }}
+
+      - name: Upload image diagnostic evidence
+        id: upload_image_diagnostics
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-diagnostics-${{ github.run_id }}-${{ github.run_attempt }}-build-and-push
+          path: |
+            deployment-diagnostics/
+            sbom.spdx.json
+            trivy.json
+          retention-days: 30
+
+      - name: Warn if image diagnostic upload failed
+        if: always() && steps.upload_image_diagnostics.outcome == 'failure'
+        run: >-
+          echo "::warning title=Deployment diagnostics upload::Image diagnostic evidence could not be uploaded;
+          diagnostics remain non-blocking, but this run requires log-based review."
+
   deploy:
     needs: build-and-push
     runs-on: ubuntu-latest
     environment: production
+    env:
+      DIAGNOSTIC_CANDIDATE_DIGEST: ${{ needs.build-and-push.outputs.digest }}
     permissions:
       id-token: write
       contents: read
@@ -163,6 +328,81 @@ jobs:
             --name ${{ vars.WEBAPP_NAME }} \
             --query "[?name==\`DOCKER_CUSTOM_IMAGE_NAME\`].value" -o tsv 2>/dev/null || echo "")
           echo "image=$CURRENT" >> "$GITHUB_OUTPUT"
+
+      - name: Migration compatibility diagnostic
+        uses: ./.github/actions/deployment-diagnostic
+        with:
+          check-id: migration-compatibility-precheck
+          category: migration-precondition
+          phase: pre-activation
+          report: deployment-diagnostics/reports/migration-compatibility.json
+          report-format: generic-json
+          records: ${{ env.DIAGNOSTIC_RECORDS }}
+          run: >-
+            mkdir -p deployment-diagnostics/reports &&
+            node scripts/deployment-checks.mjs migration
+            > deployment-diagnostics/reports/migration-compatibility.json
+
+      - name: Recovery freshness diagnostic
+        uses: ./.github/actions/deployment-diagnostic
+        with:
+          check-id: recovery-precondition-precheck
+          category: recovery-precondition
+          phase: pre-activation
+          report: deployment-diagnostics/reports/recovery-precondition.json
+          report-format: generic-json
+          records: ${{ env.DIAGNOSTIC_RECORDS }}
+          run: >-
+            mkdir -p deployment-diagnostics/reports &&
+            node scripts/deployment-checks.mjs recovery
+            > deployment-diagnostics/reports/recovery-precondition.json
+
+      - name: Current production readiness diagnostic
+        uses: ./.github/actions/deployment-diagnostic
+        with:
+          check-id: readiness-precondition-precheck
+          category: readiness-precondition
+          phase: pre-activation
+          report: deployment-diagnostics/reports/readiness-precondition.json
+          report-format: generic-json
+          records: ${{ env.DIAGNOSTIC_RECORDS }}
+          run: >-
+            mkdir -p deployment-diagnostics/reports &&
+            node scripts/deployment-checks.mjs readiness
+            --url "https://${{ vars.WEBAPP_NAME }}.azurewebsites.net/api/ready"
+            > deployment-diagnostics/reports/readiness-precondition.json
+
+      - name: Annotate absent monitoring prerequisite
+        run: >-
+          echo "::warning title=Deployment diagnostics: monitoring-precheck (skipped-no-prerequisite)::Prism's
+          reviewed infrastructure profile defines no app-owned alert or availability resources;
+          monitoring verification is recorded as skipped and does not block deployment."
+
+      - name: Record absent monitoring prerequisite
+        uses: ./.github/actions/deployment-diagnostic
+        with:
+          check-id: monitoring-precheck
+          category: monitoring-precheck
+          phase: pre-activation
+          mode: skip
+          reason: Prism's reviewed infrastructure profile defines no app-owned alert or availability resources.
+          records: ${{ env.DIAGNOSTIC_RECORDS }}
+
+      - name: Protected configuration diagnostic
+        uses: ./.github/actions/deployment-diagnostic
+        with:
+          check-id: protected-configuration-precheck
+          category: protected-configuration-precheck
+          phase: pre-activation
+          report: deployment-diagnostics/reports/protected-configuration.json
+          report-format: generic-json
+          records: ${{ env.DIAGNOSTIC_RECORDS }}
+          run: >-
+            mkdir -p deployment-diagnostics/reports &&
+            node scripts/deployment-checks.mjs protected-config
+            --resource-group "${{ vars.RESOURCE_GROUP }}"
+            --webapp-name "${{ vars.WEBAPP_NAME }}"
+            > deployment-diagnostics/reports/protected-configuration.json
 
       - name: Deploy by digest
         id: deploy
@@ -217,3 +457,29 @@ jobs:
           else
             echo "::warning::No previous image found, cannot rollback"
           fi
+
+      - name: Aggregate deployment diagnostics
+        if: always()
+        uses: ./.github/actions/deployment-diagnostic
+        with:
+          check-id: aggregate
+          category: nested-checker
+          phase: pre-activation
+          mode: aggregate
+          records: ${{ env.DIAGNOSTIC_RECORDS }}
+
+      - name: Upload deployment diagnostic evidence
+        id: upload_deploy_diagnostics
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-diagnostics-${{ github.run_id }}-${{ github.run_attempt }}-deploy
+          path: deployment-diagnostics/
+          retention-days: 30
+
+      - name: Warn if deployment diagnostic upload failed
+        if: always() && steps.upload_deploy_diagnostics.outcome == 'failure'
+        run: >-
+          echo "::warning title=Deployment diagnostics upload::Deployment diagnostic evidence could not be uploaded;
+          diagnostics remain non-blocking, but this run requires log-based review."

@@ -64,6 +64,31 @@ workflow documented in [migration and recovery](migration-and-recovery.md).
 5. **First deploy**: Push to `main` or trigger the CI workflow manually
 6. **Verify**: `GET /api/live`, `GET /api/ready`, `GET /api/version`
 
+## Deployment Diagnostics
+
+The `validate`, `build-and-push`, and `deploy` jobs implement
+`deployment-diagnostics-v1` from
+[`azure-infra@f45790e`](https://github.com/EnzoLopez2023/azure-infra/tree/f45790e9df7c9fabbc53dd04e6055a59d6f28f39/deployment-diagnostics).
+Applicable checks still run at their existing severity, but findings, checker
+failures, and absent prerequisites are warnings rather than release gates. Each
+job writes JSONL evidence and a job-summary table, then attempts a loud,
+best-effort artifact upload with 30-day retention.
+
+Checkout, setup, Azure authentication, candidate build/push and digest
+resolution, `az webapp config container set`, restart, the post-activation smoke
+test, and rollback retain their blocking behavior. Diagnostics stay inside jobs
+that already perform required work; production activation does not depend on a
+diagnostics-only job.
+
+Prism-specific checks cover additive SQLite migration compatibility, recovery
+capability and freshness evidence, current `/api/ready` compatibility, and
+protected App Service setting names/site invariants without recording setting
+values or value hashes. Candidate signing, attestations, and app-owned
+monitoring resources are not present in the reviewed deployment architecture,
+so those prerequisites are explicitly recorded as skipped rather than as
+passes. Recovery freshness remains a finding until production off-host health
+and disposable-restore evidence exist.
+
 ## Health Endpoints
 
 | Endpoint | Auth | Purpose |
